@@ -28,7 +28,7 @@ export const PlayerShowcaseCharacter: React.FC<PlayerShowcaseCharacterProps> = (
 
   return (
     <div
-      className={`relative w-full max-w-[460px] h-[490px] sm:h-[540px] mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col justify-between p-5 select-none bg-gradient-to-b from-[#0c1427] via-[#070b15] to-[#04060b] ${className}`}
+      className={`relative w-full max-w-[460px] h-[490px] sm:h-[540px] min-h-[490px] sm:min-h-[540px] mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col justify-between p-5 select-none bg-gradient-to-b from-[#0c1427] via-[#070b15] to-[#04060b] ${className}`}
     >
       {/* 1. Atmospheric Ambient Stadium Lighting */}
       <div 
@@ -67,7 +67,7 @@ export const PlayerShowcaseCharacter: React.FC<PlayerShowcaseCharacterProps> = (
       </div>
 
       {/* 3. Central Authentic Player Image (Fixed Container, object-contain, natural proportions) */}
-      <div className="relative z-10 flex-1 w-full flex items-center justify-center my-2 overflow-hidden">
+      <div className="relative z-10 flex-1 w-full flex items-center justify-center my-2 overflow-hidden h-[360px] sm:h-[410px] min-h-[360px] sm:min-h-[410px]">
         {/* Soft Radial Backlight behind the photograph */}
         <div className="absolute w-60 h-60 rounded-full bg-white/[0.03] blur-xl pointer-events-none" />
 

@@ -453,15 +453,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentList.length]);
 
-  // Keep carousel item centered in view when featured player changes
+  // Keep carousel item centered horizontally inside carousel container only (never scroll window vertically)
   useEffect(() => {
     if (!carouselRef.current) return;
-    const activeItem = carouselRef.current.children[featuredIndex] as HTMLElement;
+    const carousel = carouselRef.current;
+    const activeItem = carousel.children[featuredIndex] as HTMLElement;
     if (activeItem) {
-      activeItem.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
+      const targetScrollLeft = activeItem.offsetLeft - (carousel.clientWidth / 2) + (activeItem.clientWidth / 2);
+      carousel.scrollTo({
+        left: targetScrollLeft,
+        behavior: 'smooth'
       });
     }
   }, [featuredIndex]);
@@ -590,31 +591,39 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* ============================================================== */}
         {/* 3. MAIN FEATURED PLAYER 3D SHOWCASE (~45-50% Visual Area) */}
         {/* ============================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center rounded-3xl bg-slate-950/70 border border-white/10 backdrop-blur-xl p-4 sm:p-6 lg:p-8 shadow-2xl relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center rounded-3xl bg-slate-950/70 border border-white/10 backdrop-blur-xl p-4 sm:p-6 lg:p-8 shadow-2xl relative overflow-hidden min-h-[580px] lg:min-h-[640px]">
           
           {/* Subtle Accent Glows Behind Player */}
           <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-rr-pink/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-rr-gold/10 rounded-full blur-3xl pointer-events-none" />
 
           {/* LEFT: Player Character Showcase (45-50% visual width) */}
-          <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[460px] sm:min-h-[520px]">
+          <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[520px] sm:min-h-[580px]">
             {/* Quick-switch arrow overlay */}
             <button
-              onClick={() => setFeaturedIndex(prev => (prev > 0 ? prev - 1 : currentList.length - 1))}
-              className="absolute left-1 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:border-rr-pink/50 hover:bg-slate-800 transition-all shadow-xl backdrop-blur-md"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                setFeaturedIndex(prev => (prev > 0 ? prev - 1 : currentList.length - 1));
+              }}
+              className="absolute left-1 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:border-rr-pink/50 hover:bg-slate-800 transition-all shadow-xl backdrop-blur-md focus:outline-none"
               title="Previous player (←)"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
-              onClick={() => setFeaturedIndex(prev => (prev < currentList.length - 1 ? prev + 1 : 0))}
-              className="absolute right-1 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:border-rr-pink/50 hover:bg-slate-800 transition-all shadow-xl backdrop-blur-md"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                setFeaturedIndex(prev => (prev < currentList.length - 1 ? prev + 1 : 0));
+              }}
+              className="absolute right-1 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:border-rr-pink/50 hover:bg-slate-800 transition-all shadow-xl backdrop-blur-md focus:outline-none"
               title="Next player (→)"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* Standardized Player Showcase */}
+            {/* Standardized Player Showcase Container */}
             <div className="w-full h-[520px] sm:h-[580px] relative flex items-center justify-center">
               <PlayerShowcaseCharacter
                 key={`${featuredPlayer.player_id}-${featuredPlayer.role}`}
@@ -651,9 +660,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </span>
               </div>
 
-              <h3 className="text-3xl sm:text-5xl font-display font-black text-white tracking-tight leading-tight">
-                {featuredPlayer.name}
-              </h3>
+              <div className="min-h-[3rem] sm:min-h-[4rem] flex items-center">
+                <h3 className="text-3xl sm:text-5xl font-display font-black text-white tracking-tight leading-tight">
+                  {featuredPlayer.name}
+                </h3>
+              </div>
             </div>
 
             {/* Large PPI Score Card with Animated Progress Meter */}
@@ -785,7 +796,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* Analytical Narrative Box */}
-            <div className="p-3.5 rounded-xl bg-slate-900/40 border border-white/5 text-xs text-slate-300 leading-relaxed font-sans">
+            <div className="p-3.5 rounded-xl bg-slate-900/40 border border-white/5 text-xs text-slate-300 leading-relaxed font-sans min-h-[84px] flex flex-col justify-center">
               <span className="text-[10px] font-mono text-rr-pink font-bold uppercase tracking-wider block mb-1">
                 ROYALS ANALYTICAL ASSESSMENT
               </span>
