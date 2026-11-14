@@ -56,6 +56,8 @@ export const App: React.FC = () => {
         {activeTab === 'landing' && (
           <LandingPage
             overview={overview}
+            selectedTop20={selectedTop20}
+            onSelectPlayer={(id, role) => handleOpenPlayerModal(id, role)}
             onExploreSelected={() => setActiveTab('selected-arena')}
             onAnalyzeAny={() => setActiveTab('analyzer')}
           />
