@@ -18,6 +18,7 @@ import {
   Award
 } from 'lucide-react';
 import { PlayerShowcaseCharacter } from '../components/PlayerShowcaseCharacter';
+import { PlayerImageAuditModal } from '../components/PlayerImageAuditModal';
 import { getPlayerImage } from '../utils/playerImages';
 import { OverviewStats, SelectedTop20, PlayerOverview } from '../types';
 
@@ -412,6 +413,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   // Compact stats expandable toggle
   const [showExtendedStats, setShowExtendedStats] = useState<boolean>(false);
 
+  // Visual Image Audit Modal state
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState<boolean>(false);
+
   // Carousel ref for smooth horizontal scrolling
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -558,8 +562,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </button>
           </div>
 
-          {/* Category Header Label with Active Indicator */}
-          <div className="flex items-center space-x-3 text-xs font-mono">
+          {/* Category Header Label with Active Indicator & Audit Button */}
+          <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
             <span className="text-slate-400 uppercase tracking-widest">
               {activeCategory === 'batters' ? 'BATTERS — TOP 10 OF 10' : 'BOWLERS — TOP 10 OF 10'}
             </span>
@@ -567,8 +571,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <span className="text-slate-300 font-semibold">
               FEATURED: <span className="text-rr-pink font-bold">#{featuredPlayer.official_rank}</span> ({featuredIndex + 1}/10)
             </span>
-            <span className="hidden md:inline-block text-[11px] text-slate-500 border border-slate-800 px-2 py-0.5 rounded bg-slate-900">
-              Use ← → Keys to cycle
+
+            <button
+              onClick={() => setIsAuditModalOpen(true)}
+              className="px-3 py-1 rounded-lg bg-slate-900 border border-emerald-500/40 hover:bg-emerald-950/40 text-emerald-300 hover:text-emerald-200 text-[11px] font-mono font-semibold flex items-center space-x-1.5 transition-all shadow-sm"
+              title="Inspect side-by-side verification grid of all 20 authentic player photographs"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>AUDIT 20 PLAYER PHOTOS</span>
+            </button>
+
+            <span className="hidden lg:inline-block text-[11px] text-slate-500 border border-slate-800 px-2 py-0.5 rounded bg-slate-900">
+              Use ← → Keys
             </span>
           </div>
         </div>
@@ -924,12 +938,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
                   {/* Player Real Photo & Identity */}
                   <div className="flex items-center space-x-3 mb-2.5">
-                    <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-900 border border-white/10 flex-shrink-0 flex items-center justify-center">
+                    <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-900/90 border border-white/10 flex-shrink-0 flex items-center justify-center p-0.5">
                       {getPlayerImage(player.name) ? (
                         <img 
-                          src={getPlayerImage(player.name)!} 
+                          src={getPlayerImage(player.name)} 
                           alt={player.name}
-                          className="w-full h-full object-cover object-top filter brightness-105"
+                          className="w-full h-full object-contain filter brightness-100"
                         />
                       ) : (
                         <span className="text-xs font-mono font-bold text-rr-pink">
@@ -1015,6 +1029,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Side-by-Side Visual Image Audit Modal */}
+      <PlayerImageAuditModal
+        isOpen={isAuditModalOpen}
+        onClose={() => setIsAuditModalOpen(false)}
+      />
     </div>
   );
 };

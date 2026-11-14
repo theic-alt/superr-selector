@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
-import { Trophy, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { Trophy, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { getPlayerImageInfo } from '../utils/playerImages';
 
 interface PlayerShowcaseCharacterProps {
   playerImage: string;
@@ -20,89 +21,103 @@ export const PlayerShowcaseCharacter: React.FC<PlayerShowcaseCharacterProps> = (
   teams = [],
   className = ''
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-
-  // Smooth mouse tilt parallax (constrained to 10 deg)
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12; // -6deg to +6deg
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -10; // -5deg to +5deg
-    setTilt({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-  };
-
   const isRank1 = rank === 1;
+  const info = getPlayerImageInfo(name);
+  const isTransparent = info ? info.isTransparentCutout : playerImage.endsWith('.png');
 
   return (
     <div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`relative w-full h-[520px] sm:h-[580px] max-w-[460px] mx-auto flex flex-col items-center justify-end select-none overflow-hidden ${className}`}
-      style={{ perspective: '1200px' }}
+      className={`relative w-full max-w-[460px] h-[490px] sm:h-[540px] mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col justify-between p-5 select-none bg-gradient-to-b from-[#0c1427] via-[#070b15] to-[#04060b] ${className}`}
     >
-      {/* 1. Cinematic Stadium Spotlight & Ambient Lighting */}
+      {/* 1. Atmospheric Ambient Stadium Lighting */}
       <div 
-        className={`absolute inset-0 bg-gradient-to-b ${
-          isRank1 ? 'from-amber-500/25 via-rr-pink/15 to-transparent' : 'from-rr-pink/25 via-purple-900/15 to-transparent'
-        } opacity-80 blur-2xl pointer-events-none transition-all duration-700`} 
+        className={`absolute -top-24 -left-24 w-72 h-72 rounded-full ${
+          isRank1 ? 'bg-amber-500/20' : 'bg-rr-pink/20'
+        } blur-3xl pointer-events-none transition-all duration-700`} 
       />
-      
-      {/* Studio Radial Light Beams */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_75%_55%_at_50%_15%,rgba(234,26,136,0.25),transparent_75%)] pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-blue-600/15 blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_20%,rgba(234,26,136,0.12),transparent_75%)] pointer-events-none" />
 
-      {/* 2. Holographic Ground Pedestal (Fixed Position for Foot Contact) */}
-      <div className="absolute bottom-6 w-80 sm:w-96 h-20 pointer-events-none flex items-center justify-center z-0">
-        {/* Outer Glowing Neon Ring */}
-        <div className={`w-full h-full rounded-full border-2 ${
-          isRank1 ? 'border-amber-400/60 shadow-amber-500/50' : 'border-rr-pink/60 shadow-rr-pink/50'
-        } shadow-2xl transform -rotate-x-60`} />
-        {/* Inner Core Disc */}
-        <div className="absolute w-56 sm:w-68 h-14 rounded-full bg-slate-950/90 border border-white/20 transform -rotate-x-60 backdrop-blur-md" />
-        {/* Floor Uplight Glow */}
-        <div className={`absolute w-40 h-8 rounded-full ${
-          isRank1 ? 'bg-amber-400/40' : 'bg-rr-pink/40'
-        } blur-lg transform -rotate-x-60`} />
+      {/* 2. Top Header Bar: Rank & Verification Tag */}
+      <div className="relative z-20 flex items-center justify-between w-full">
+        {/* Rank Badge */}
+        <div className="flex items-center space-x-2">
+          <span className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase border shadow-lg ${
+            isRank1
+              ? 'bg-amber-950/70 border-amber-500/50 text-amber-300 shadow-amber-500/20'
+              : 'bg-slate-900/80 border-pitch-border text-slate-300'
+          }`}>
+            {isRank1 && <Trophy className="w-3.5 h-3.5 text-amber-400" />}
+            <span>RANK #{rank} {role.toUpperCase()}</span>
+          </span>
+
+          {isRank1 && (
+            <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950">
+              BENCHMARK
+            </span>
+          )}
+        </div>
+
+        {/* Authenticity Verified Tag */}
+        <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-900/90 border border-emerald-500/30 text-[10px] font-mono text-emerald-300 shadow-md">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="font-semibold">AUTHENTIC PHOTO</span>
+        </div>
       </div>
 
-      {/* 3. Standardized 2:3 Character Canvas Area (Locked Frame) */}
-      <div
-        className="relative z-10 w-full h-full max-h-[540px] sm:max-h-[580px] aspect-[2/3] flex items-end justify-center transition-transform duration-200 ease-out"
-        style={{
-          transform: `rotateY(${tilt.x}deg) rotateX(${tilt.y}deg) translateZ(15px)`
-        }}
-      >
-        <div className="relative w-full h-full flex items-end justify-center">
-          {/* Soft Ground Contact Shadow (Feet Contact Plane) */}
-          <div className="absolute bottom-5 w-56 h-7 bg-black/75 rounded-full blur-md" />
+      {/* 3. Central Authentic Player Image (Fixed Container, object-contain, natural proportions) */}
+      <div className="relative z-10 flex-1 w-full flex items-center justify-center my-2 overflow-hidden">
+        {/* Soft Radial Backlight behind the photograph */}
+        <div className="absolute w-60 h-60 rounded-full bg-white/[0.03] blur-xl pointer-events-none" />
 
-          {/* Standardized Full-Body Character Cutout */}
+        {isTransparent ? (
+          /* Transparent Cutout Presentation */
           <img
             key={playerImage}
             src={playerImage}
             alt={name}
             onLoad={() => setImageLoaded(true)}
-            className={`w-full h-full object-contain object-bottom filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)] drop-shadow-[0_0_20px_${
-              isRank1 ? 'rgba(229,169,60,0.35)' : 'rgba(234,26,136,0.35)'
-            }] transition-all duration-400 ${
-              imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-98'
+            className={`max-h-[360px] sm:max-h-[410px] w-auto max-w-[92%] object-contain object-bottom filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] drop-shadow-[0_0_20px_${
+              isRank1 ? 'rgba(229,169,60,0.25)' : 'rgba(234,26,136,0.25)'
+            }] transition-all duration-300 ${
+              imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}
           />
-        </div>
+        ) : (
+          /* Framed Portrait Photograph Presentation */
+          <div className="relative max-h-[350px] sm:max-h-[390px] w-auto max-w-[85%] rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-slate-950/80 group">
+            <img
+              key={playerImage}
+              src={playerImage}
+              alt={name}
+              onLoad={() => setImageLoaded(true)}
+              className={`max-h-[350px] sm:max-h-[390px] w-auto object-contain filter brightness-100 contrast-105 transition-all duration-300 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+            {/* Subtle gloss gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+          </div>
+        )}
       </div>
 
-      {/* 4. Bottom Authenticity & Character Spec Badge */}
-      <div className="absolute bottom-2 z-20 flex items-center space-x-2 px-3.5 py-1 rounded-full bg-slate-950/90 border border-white/10 backdrop-blur-md text-[10px] font-mono text-slate-300 shadow-xl">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        <span className="font-bold text-white tracking-wider">STANDARDIZED CHARACTER ASSET</span>
-        <span className="text-slate-500">•</span>
-        <span className="text-slate-400 font-semibold">{role.toUpperCase()} #{rank}</span>
+      {/* 4. Bottom Identity Bar */}
+      <div className="relative z-20 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+        <div className="flex items-center space-x-2">
+          <span className="text-white font-display font-bold text-sm tracking-wide">
+            {name}
+          </span>
+          <span className="text-slate-500">•</span>
+          <span className="text-slate-400 font-semibold">
+            {teams.slice(0, 2).join(' / ') || role}
+          </span>
+        </div>
+
+        <div className="flex items-center space-x-1.5 text-rr-pink font-bold">
+          <span className="text-white">{ppiScore.toFixed(1)}</span>
+          <span className="text-[10px] text-slate-400 font-normal">PPI</span>
+        </div>
       </div>
     </div>
   );
