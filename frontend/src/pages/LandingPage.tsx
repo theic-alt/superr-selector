@@ -532,20 +532,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* ============================================================== */}
         {/* 2. CATEGORY TOGGLE (TOP 10 BATTERS vs TOP 10 BOWLERS) */}
         {/* ============================================================== */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-rr-pink/30 pb-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-b border-rr-pink/30 pb-4">
           {/* Prominent Toggle Buttons */}
-          <div className="flex items-center bg-[#090b1c]/90 p-1.5 rounded-2xl border border-rr-pink/30 shadow-inner shadow-rr-pink/10">
+          <div className="w-full sm:w-auto flex items-center justify-between bg-[#090b1c]/90 p-1 sm:p-1.5 rounded-2xl border border-rr-pink/30 shadow-inner shadow-rr-pink/10">
             <button
               onClick={() => handleCategoryChange('batters')}
-              className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center space-x-1.5 sm:space-x-2 px-3 py-2 sm:px-6 sm:py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
                 activeCategory === 'batters'
                   ? 'bg-gradient-to-r from-rr-pink via-rose-500 to-rr-darkPink text-white shadow-xl shadow-rr-pink/40 border border-white/20 scale-100'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-rr-pink/10'
               }`}
             >
-              <Zap className="w-4 h-4 text-amber-300" />
+              <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-300 flex-shrink-0" />
               <span>TOP 10 BATTERS</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
+              <span className={`px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono ${
                 activeCategory === 'batters' ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
               }`}>
                 10
@@ -554,15 +554,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
             <button
               onClick={() => handleCategoryChange('bowlers')}
-              className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center space-x-1.5 sm:space-x-2 px-3 py-2 sm:px-6 sm:py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
                 activeCategory === 'bowlers'
                   ? 'bg-gradient-to-r from-rr-pink via-rose-500 to-rr-darkPink text-white shadow-xl shadow-rr-pink/40 border border-white/20 scale-100'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-rr-pink/10'
               }`}
             >
-              <Target className="w-4 h-4 text-cyan-300" />
+              <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-300 flex-shrink-0" />
               <span>TOP 10 BOWLERS</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
+              <span className={`px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono ${
                 activeCategory === 'bowlers' ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
               }`}>
                 10
@@ -571,34 +571,32 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Category Header Label with Active Indicator & Audit Button */}
-          <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-            <span className="text-slate-400 uppercase tracking-widest">
-              {activeCategory === 'batters' ? 'BATTERS — TOP 10 OF 10' : 'BOWLERS — TOP 10 OF 10'}
-            </span>
-            <span className="w-2 h-2 rounded-full bg-rr-pink shadow-md shadow-rr-pink/50 animate-pulse" />
-            <span className="text-slate-200 font-semibold">
-              FEATURED: <span className="text-rr-pink font-bold">#{featuredPlayer.official_rank}</span> ({featuredIndex + 1}/10)
-            </span>
+          <div className="w-full sm:w-auto flex flex-wrap items-center justify-between sm:justify-start gap-2 sm:gap-3 text-xs font-mono">
+            <div className="flex items-center space-x-2">
+              <span className="text-slate-400 uppercase tracking-widest text-[11px] sm:text-xs">
+                {activeCategory === 'batters' ? 'BATTERS (10)' : 'BOWLERS (10)'}
+              </span>
+              <span className="w-2 h-2 rounded-full bg-rr-pink shadow-md shadow-rr-pink/50 animate-pulse" />
+              <span className="text-slate-200 font-semibold text-[11px] sm:text-xs">
+                #{featuredPlayer.official_rank} ({featuredIndex + 1}/10)
+              </span>
+            </div>
 
             <button
               onClick={() => setIsAuditModalOpen(true)}
-              className="px-3 py-1 rounded-lg bg-[#0e1628] border border-rr-pink/40 hover:bg-rr-pink/20 text-slate-200 hover:text-white text-[11px] font-mono font-semibold flex items-center space-x-1.5 transition-all shadow-sm"
+              className="px-2.5 sm:px-3 py-1 rounded-lg bg-[#0e1628] border border-rr-pink/40 hover:bg-rr-pink/20 text-slate-200 hover:text-white text-[10px] sm:text-[11px] font-mono font-semibold flex items-center space-x-1 sm:space-x-1.5 transition-all shadow-sm"
               title="Inspect side-by-side verification grid of all 20 authentic player photographs"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-rr-pink" />
-              <span>AUDIT 20 PLAYER PHOTOS</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-rr-pink flex-shrink-0" />
+              <span>AUDIT PHOTOS</span>
             </button>
-
-            <span className="hidden lg:inline-block text-[11px] text-slate-400 border border-rr-pink/20 px-2 py-0.5 rounded bg-slate-900/80">
-              Use ← → Keys
-            </span>
           </div>
         </div>
 
         {/* ============================================================== */}
         {/* 3. MAIN FEATURED PLAYER 3D SHOWCASE (~45-50% Visual Area) */}
         {/* ============================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center rounded-3xl bg-gradient-to-b from-[#12081f]/85 via-[#080d1e]/90 to-[#040816]/95 border-2 border-rr-pink/40 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-rr-pink/15 relative overflow-hidden min-h-[580px] lg:min-h-[640px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-center rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#12081f]/85 via-[#080d1e]/90 to-[#040816]/95 border-2 border-rr-pink/40 backdrop-blur-2xl p-3.5 sm:p-6 lg:p-8 shadow-2xl shadow-rr-pink/15 relative overflow-hidden min-h-0 sm:min-h-[580px] lg:min-h-[640px]">
           
           {/* Vibrant Rajasthan Royals Pink Accent Glows Behind Player */}
           <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-rr-pink/25 rounded-full blur-3xl pointer-events-none" />
@@ -606,7 +604,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-rr-gold/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* LEFT: Player Character Showcase (45-50% visual width) */}
-          <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[520px] sm:min-h-[580px]">
+          <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[460px] sm:min-h-[580px] w-full">
             {/* Quick-switch arrow overlay */}
             <button
               type="button"
@@ -614,10 +612,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 e.preventDefault();
                 setFeaturedIndex(prev => (prev > 0 ? prev - 1 : currentList.length - 1));
               }}
-              className="absolute left-1 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:border-rr-pink/50 hover:bg-slate-800 transition-all shadow-xl backdrop-blur-md focus:outline-none"
+              className="absolute left-1 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-2.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:border-rr-pink/50 hover:bg-slate-800 transition-all shadow-xl backdrop-blur-md focus:outline-none"
               title="Previous player (←)"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <button
               type="button"
@@ -625,14 +623,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 e.preventDefault();
                 setFeaturedIndex(prev => (prev < currentList.length - 1 ? prev + 1 : 0));
               }}
-              className="absolute right-1 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:border-rr-pink/50 hover:bg-slate-800 transition-all shadow-xl backdrop-blur-md focus:outline-none"
+              className="absolute right-1 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-2.5 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white hover:border-rr-pink/50 hover:bg-slate-800 transition-all shadow-xl backdrop-blur-md focus:outline-none"
               title="Next player (→)"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             {/* Standardized Player Showcase Container */}
-            <div className="w-full h-[520px] sm:h-[580px] relative flex items-center justify-center">
+            <div className="w-full h-[460px] sm:h-[580px] relative flex items-center justify-center">
               <PlayerShowcaseCharacter
                 key={`${featuredPlayer.player_id}-${featuredPlayer.role}`}
                 playerImage={getPlayerImage(featuredPlayer.name)}
@@ -668,32 +666,32 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </span>
               </div>
 
-              <div className="min-h-[3rem] sm:min-h-[4rem] flex items-center">
-                <h3 className="text-3xl sm:text-5xl font-display font-black text-white tracking-tight leading-tight">
+              <div className="min-h-[2.5rem] sm:min-h-[4rem] flex items-center">
+                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-display font-black text-white tracking-tight leading-tight">
                   {featuredPlayer.name}
                 </h3>
               </div>
             </div>
 
             {/* Large PPI Score Card with Animated Progress Meter */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-[#1a0a28]/95 via-[#0e132b]/95 to-[#070b1a]/95 border-2 border-rr-pink/50 relative overflow-hidden flex items-center justify-between shadow-2xl shadow-rr-pink/20">
-              <div className="space-y-1">
-                <span className="text-[11px] font-mono text-rr-pink uppercase tracking-widest block font-bold">
+            <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#1a0a28]/95 via-[#0e132b]/95 to-[#070b1a]/95 border-2 border-rr-pink/50 relative overflow-hidden flex items-center justify-between shadow-2xl shadow-rr-pink/20">
+              <div className="space-y-0.5 sm:space-y-1">
+                <span className="text-[10px] sm:text-[11px] font-mono text-rr-pink uppercase tracking-widest block font-bold">
                   PRESSURE PERFORMANCE INDEX
                 </span>
-                <div className="flex items-baseline space-x-2">
-                  <span className="text-4xl sm:text-5xl font-display font-black bg-gradient-to-r from-white via-pink-100 to-rr-pink bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(234,26,136,0.3)]">
+                <div className="flex items-baseline space-x-1.5 sm:space-x-2">
+                  <span className="text-3xl sm:text-5xl font-display font-black bg-gradient-to-r from-white via-pink-100 to-rr-pink bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(234,26,136,0.3)]">
                     {featuredPlayer.ppi_score.toFixed(2)}
                   </span>
-                  <span className="text-base font-mono text-slate-400 font-bold">/ 100.00</span>
+                  <span className="text-xs sm:text-base font-mono text-slate-400 font-bold">/ 100.00</span>
                 </div>
-                <p className="text-xs font-mono text-slate-300">
-                  Shrinkage-Adjusted Reliability ({featuredPlayer.reliability_pct.toFixed(1)}%) • Rank #{featuredPlayer.official_rank}
+                <p className="text-[11px] sm:text-xs font-mono text-slate-300">
+                  Reliability ({featuredPlayer.reliability_pct.toFixed(1)}%) • Rank #{featuredPlayer.official_rank}
                 </p>
               </div>
 
               {/* Circular Radial Meter with Royals Pink Arc */}
-              <div className="relative w-20 h-20 flex-shrink-0 flex items-center justify-center">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 flex items-center justify-center">
                 <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
                   {/* Track */}
                   <path
@@ -715,7 +713,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-xs font-mono font-bold text-white drop-shadow">
+                  <span className="text-[11px] sm:text-xs font-mono font-bold text-white drop-shadow">
                     {featuredPlayer.ppi_score.toFixed(0)}%
                   </span>
                 </div>
@@ -723,80 +721,80 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* 3 Primary Directly-Visible Performance Statistics */}
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {featuredPlayer.role === 'Batter' ? (
                 <>
-                  <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
-                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5 sm:space-y-1">
+                    <span className="text-[8.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-widest block truncate">
                       PRESSURE SR
                     </span>
-                    <span className="text-xl sm:text-2xl font-display font-black text-white block">
+                    <span className="text-base sm:text-2xl font-display font-black text-white block">
                       {featuredPlayer.pressure_sr?.toFixed(1) ?? '184.2'}
                     </span>
-                    <span className="text-[11px] font-mono text-emerald-400 block font-bold">
-                      {featuredPlayer.sr_uplift && featuredPlayer.sr_uplift > 0 ? `+${featuredPlayer.sr_uplift.toFixed(1)}` : '0.0'} vs Baseline
+                    <span className="text-[9.5px] sm:text-[11px] font-mono text-emerald-400 block font-bold truncate">
+                      {featuredPlayer.sr_uplift && featuredPlayer.sr_uplift > 0 ? `+${featuredPlayer.sr_uplift.toFixed(1)}` : '0.0'} vs Base
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
-                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5 sm:space-y-1">
+                    <span className="text-[8.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-widest block truncate">
                       BOUNDARY %
                     </span>
-                    <span className="text-xl sm:text-2xl font-display font-black text-amber-300 block">
+                    <span className="text-base sm:text-2xl font-display font-black text-amber-300 block">
                       {featuredPlayer.pressure_boundary_rate ? `${featuredPlayer.pressure_boundary_rate.toFixed(1)}%` : '22.5%'}
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400 block">
-                      {featuredPlayer.boundary_uplift && featuredPlayer.boundary_uplift > 0 ? `+${featuredPlayer.boundary_uplift.toFixed(1)}%` : 'High Leverage'}
+                    <span className="text-[9.5px] sm:text-[11px] font-mono text-slate-400 block truncate">
+                      {featuredPlayer.boundary_uplift && featuredPlayer.boundary_uplift > 0 ? `+${featuredPlayer.boundary_uplift.toFixed(1)}%` : 'High Lev'}
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
-                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5 sm:space-y-1">
+                    <span className="text-[8.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-widest block truncate">
                       RELIABILITY
                     </span>
-                    <span className="text-xl sm:text-2xl font-display font-black text-rr-pink block">
+                    <span className="text-base sm:text-2xl font-display font-black text-rr-pink block">
                       {featuredPlayer.reliability_pct.toFixed(0)}%
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400 block">
-                      {featuredPlayer.pressure_legal_balls} Legal Balls
+                    <span className="text-[9.5px] sm:text-[11px] font-mono text-slate-400 block truncate">
+                      {featuredPlayer.pressure_legal_balls} Balls
                     </span>
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
-                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5 sm:space-y-1">
+                    <span className="text-[8.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-widest block truncate">
                       PRESSURE ECON
                     </span>
-                    <span className="text-xl sm:text-2xl font-display font-black text-white block">
+                    <span className="text-base sm:text-2xl font-display font-black text-white block">
                       {featuredPlayer.pressure_economy?.toFixed(2) ?? '7.12'}
                     </span>
-                    <span className="text-[11px] font-mono text-emerald-400 block font-bold">
-                      {featuredPlayer.economy_improvement && featuredPlayer.economy_improvement > 0 ? `-${featuredPlayer.economy_improvement.toFixed(2)}` : '0.0'} under base
+                    <span className="text-[9.5px] sm:text-[11px] font-mono text-emerald-400 block font-bold truncate">
+                      {featuredPlayer.economy_improvement && featuredPlayer.economy_improvement > 0 ? `-${featuredPlayer.economy_improvement.toFixed(2)}` : '0.0'} under
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
-                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5 sm:space-y-1">
+                    <span className="text-[8.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-widest block truncate">
                       DOT BALL %
                     </span>
-                    <span className="text-xl sm:text-2xl font-display font-black text-cyan-300 block">
+                    <span className="text-base sm:text-2xl font-display font-black text-cyan-300 block">
                       {featuredPlayer.dot_ball_rate ? `${featuredPlayer.dot_ball_rate.toFixed(1)}%` : '42.0%'}
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400 block">
-                      {featuredPlayer.pressure_wickets_per_100 ? `${featuredPlayer.pressure_wickets_per_100.toFixed(1)} Wkts/100` : 'Key Wickets'}
+                    <span className="text-[9.5px] sm:text-[11px] font-mono text-slate-400 block truncate">
+                      {featuredPlayer.pressure_wickets_per_100 ? `${featuredPlayer.pressure_wickets_per_100.toFixed(1)} Wkts` : 'Leverage'}
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
-                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5 sm:space-y-1">
+                    <span className="text-[8.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-widest block truncate">
                       RELIABILITY
                     </span>
-                    <span className="text-xl sm:text-2xl font-display font-black text-rr-pink block">
+                    <span className="text-base sm:text-2xl font-display font-black text-rr-pink block">
                       {featuredPlayer.reliability_pct.toFixed(0)}%
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400 block">
-                      {featuredPlayer.pressure_legal_balls} Legal Balls
+                    <span className="text-[9.5px] sm:text-[11px] font-mono text-slate-400 block truncate">
+                      {featuredPlayer.pressure_legal_balls} Balls
                     </span>
                   </div>
                 </>
@@ -804,8 +802,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* Analytical Narrative Box with Royals Pink Accents */}
-            <div className="p-3.5 rounded-xl bg-[#140b24]/80 border-l-4 border-l-rr-pink border-t border-r border-b border-rr-pink/25 text-xs text-slate-200 leading-relaxed font-sans min-h-[84px] flex flex-col justify-center shadow-md shadow-rr-pink/5">
-              <span className="text-[10px] font-mono text-rr-pink font-bold uppercase tracking-wider block mb-1">
+            <div className="p-3 sm:p-3.5 rounded-xl bg-[#140b24]/80 border-l-4 border-l-rr-pink border-t border-r border-b border-rr-pink/25 text-xs text-slate-200 leading-relaxed font-sans min-h-[72px] sm:min-h-[84px] flex flex-col justify-center shadow-md shadow-rr-pink/5">
+              <span className="text-[9.5px] sm:text-[10px] font-mono text-rr-pink font-bold uppercase tracking-wider block mb-1">
                 ROYALS ANALYTICAL ASSESSMENT
               </span>
               <p>{getPlayerNarrative(featuredPlayer)}</p>
@@ -821,7 +819,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </button>
 
               {showExtendedStats && (
-                <div className="mt-3 p-3.5 rounded-xl bg-[#090e21] border border-rr-pink/30 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono animate-fade-in shadow-inner">
+                <div className="mt-3 p-3 sm:p-3.5 rounded-xl bg-[#090e21] border border-rr-pink/30 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 text-xs font-mono animate-fade-in shadow-inner">
                   <div>
                     <span className="text-slate-400 block text-[10px]">PRESSURE MATCHES</span>
                     <span className="text-white font-bold">{featuredPlayer.pressure_matches} Games</span>
@@ -854,32 +852,34 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               )}
             </div>
 
-            {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* Primary Action Buttons - Mobile Responsive Stack */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2">
               <button
                 onClick={() => onSelectPlayer && onSelectPlayer(featuredPlayer.player_id, featuredPlayer.role)}
-                className="flex-1 min-w-[200px] flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-gradient-to-r from-rr-pink via-rose-500 to-rr-darkPink hover:brightness-110 text-white font-bold text-xs sm:text-sm shadow-xl shadow-rr-pink/35 hover:scale-[1.01] active:scale-[0.99] transition-all border border-white/20"
+                className="w-full sm:flex-1 min-w-0 flex items-center justify-center space-x-2 px-4 sm:px-5 py-3 rounded-xl bg-gradient-to-r from-rr-pink via-rose-500 to-rr-darkPink hover:brightness-110 text-white font-bold text-xs sm:text-sm shadow-xl shadow-rr-pink/35 hover:scale-[1.01] active:scale-[0.99] transition-all border border-white/20"
               >
-                <Activity className="w-4 h-4 text-white" />
-                <span>DEEP DIVE COMPLETE DOSSIER</span>
-                <ExternalLink className="w-4 h-4 ml-1 opacity-80" />
+                <Activity className="w-4 h-4 text-white flex-shrink-0" />
+                <span className="truncate">DEEP DIVE COMPLETE DOSSIER</span>
+                <ExternalLink className="w-4 h-4 ml-1 opacity-80 flex-shrink-0" />
               </button>
 
-              <button
-                onClick={onExploreSelected}
-                className="flex items-center space-x-2 px-4 py-3 rounded-xl glass-panel hover:bg-rr-pink/15 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm border border-rr-pink/30 transition-all hover:scale-[1.01]"
-              >
-                <Trophy className="w-4 h-4 text-amber-400" />
-                <span>ARENA MATRIX</span>
-              </button>
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-3">
+                <button
+                  onClick={onExploreSelected}
+                  className="flex items-center justify-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl glass-panel hover:bg-rr-pink/15 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm border border-rr-pink/30 transition-all hover:scale-[1.01]"
+                >
+                  <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 flex-shrink-0" />
+                  <span>ARENA MATRIX</span>
+                </button>
 
-              <button
-                onClick={onAnalyzeAny}
-                className="flex items-center space-x-2 px-4 py-3 rounded-xl glass-panel hover:bg-rr-pink/15 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm border border-rr-pink/30 transition-all hover:scale-[1.01]"
-              >
-                <Cpu className="w-4 h-4 text-rose-300" />
-                <span>SEARCH ANY PLAYER</span>
-              </button>
+                <button
+                  onClick={onAnalyzeAny}
+                  className="flex items-center justify-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl glass-panel hover:bg-rr-pink/15 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm border border-rr-pink/30 transition-all hover:scale-[1.01]"
+                >
+                  <Cpu className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-300 flex-shrink-0" />
+                  <span>SEARCH ANY</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -891,19 +891,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <span className="w-2.5 h-2.5 rounded-full bg-rr-pink shadow-md shadow-rr-pink/50 animate-pulse" />
-              <h3 className="text-sm font-display font-bold uppercase tracking-wider text-slate-200">
+              <h3 className="text-xs sm:text-sm font-display font-bold uppercase tracking-wider text-slate-200">
                 EXPLORE ALL {activeCategory.toUpperCase()} ({currentList.length} PROFILES)
               </h3>
             </div>
-            <span className="text-xs font-mono text-slate-400">
+            <span className="text-[11px] sm:text-xs font-mono text-slate-400">
               Click any card to load into 3D view
             </span>
           </div>
 
-          {/* Horizontal Scrollable Carousel */}
+          {/* Horizontal Scrollable Carousel with Mobile Bleed */}
           <div 
             ref={carouselRef}
-            className="flex items-center space-x-3 overflow-x-auto pb-3 pt-1 scrollbar-thin scrollbar-thumb-rr-pink/30 scrollbar-track-transparent scroll-smooth focus:outline-none"
+            className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center space-x-2.5 sm:space-x-3 overflow-x-auto pb-3 pt-1 scrollbar-thin scrollbar-thumb-rr-pink/30 scrollbar-track-transparent scroll-smooth focus:outline-none"
             tabIndex={0}
           >
             {currentList.map((player, idx) => {
@@ -914,7 +914,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <div
                   key={player.player_id}
                   onClick={() => setFeaturedIndex(idx)}
-                  className={`flex-shrink-0 w-52 sm:w-56 p-3.5 rounded-2xl cursor-pointer transition-all duration-200 relative group select-none ${
+                  className={`flex-shrink-0 w-44 sm:w-56 p-3 sm:p-3.5 rounded-2xl cursor-pointer transition-all duration-200 relative group select-none ${
                     isSelected
                       ? 'bg-gradient-to-b from-[#250d38] to-[#0c1228] border-2 border-rr-pink shadow-xl shadow-rr-pink/30 scale-[1.02]'
                       : 'bg-[#080d1d]/80 border border-white/10 hover:border-rr-pink/40 hover:bg-[#150a24]/60'

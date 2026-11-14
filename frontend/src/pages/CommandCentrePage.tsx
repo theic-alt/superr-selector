@@ -66,70 +66,70 @@ export const CommandCentrePage: React.FC<CommandCentrePageProps> = ({ overview, 
         </div>
       </div>
 
-      {/* 5 Macro Metrics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        <div className="p-4 rounded-2xl glass-panel border border-white/10">
-          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-1">Total Deliveries</span>
-          <span className="text-2xl font-display font-black text-white">
+      {/* 5 Macro Metrics Cards - Mobile Responsive Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel border border-white/10">
+          <span className="text-[9.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1 truncate">Total Deliveries</span>
+          <span className="text-xl sm:text-2xl font-display font-black text-white">
             {overview ? overview.total_deliveries.toLocaleString() : '194,014'}
           </span>
-          <span className="text-[11px] font-mono text-slate-400 block mt-1">Scoped IPL & T20I</span>
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 block mt-0.5 sm:mt-1 truncate">Scoped IPL & T20I</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-panel border border-rr-pink/30 shadow-lg shadow-rr-pink/5">
-          <span className="text-[10px] font-mono text-rr-pink uppercase tracking-wider block mb-1 font-bold">Pressure Deliveries</span>
-          <span className="text-2xl font-display font-black text-rr-pink">
+        <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel border border-rr-pink/30 shadow-lg shadow-rr-pink/5">
+          <span className="text-[9.5px] sm:text-[10px] font-mono text-rr-pink uppercase tracking-wider block mb-0.5 sm:mb-1 font-bold truncate">Pressure Deliveries</span>
+          <span className="text-xl sm:text-2xl font-display font-black text-rr-pink">
             {overview ? `${(overview.pressure_deliveries_batter).toLocaleString()} balls` : '42,369 balls'}
           </span>
-          <span className="text-[11px] font-mono text-emerald-400 block mt-1">21.8% Under Pressure</span>
+          <span className="text-[10px] sm:text-[11px] font-mono text-emerald-400 block mt-0.5 sm:mt-1 truncate">21.8% Pressure</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-panel border border-white/10">
-          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-1">Avg Batter PPI</span>
-          <span className="text-2xl font-display font-black text-white">
+        <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel border border-white/10">
+          <span className="text-[9.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1 truncate">Avg Batter PPI</span>
+          <span className="text-xl sm:text-2xl font-display font-black text-white">
             {overview ? overview.avg_batter_ppi : '60.25'}
           </span>
-          <span className="text-[11px] font-mono text-slate-400 block mt-1">Top Score: 100.00</span>
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 block mt-0.5 sm:mt-1 truncate">Top: 100.00</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-panel border border-white/10">
-          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-1">Avg Bowler PPI</span>
-          <span className="text-2xl font-display font-black text-white">
+        <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel border border-white/10">
+          <span className="text-[9.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1 truncate">Avg Bowler PPI</span>
+          <span className="text-xl sm:text-2xl font-display font-black text-white">
             {overview ? overview.avg_bowler_ppi : '54.85'}
           </span>
-          <span className="text-[11px] font-mono text-slate-400 block mt-1">Top Score: 100.00</span>
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 block mt-0.5 sm:mt-1 truncate">Top: 100.00</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-panel border border-white/10">
-          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-1">Eligibility Filter</span>
-          <span className="text-2xl font-display font-black text-amber-400">3 / 90 / 8</span>
-          <span className="text-[11px] font-mono text-slate-400 block mt-1">Matches / Balls / P-Matches</span>
+        <div className="col-span-2 sm:col-span-1 p-3 sm:p-4 rounded-xl sm:rounded-2xl glass-panel border border-white/10">
+          <span className="text-[9.5px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-0.5 sm:mb-1 truncate">Eligibility Filter</span>
+          <span className="text-xl sm:text-2xl font-display font-black text-amber-400">3 / 90 / 8</span>
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 block mt-0.5 sm:mt-1 truncate">Matches / Balls / P-Matches</span>
         </div>
       </div>
 
-      {/* Role Filters & Search Controls */}
-      <div className="p-4 rounded-2xl glass-panel border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Role Filters & Search Controls - Mobile Responsive */}
+      <div className="p-3.5 sm:p-4 rounded-2xl glass-panel border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
         {/* Role Toggle */}
-        <div className="flex items-center space-x-2 p-1 rounded-xl bg-slate-900/80 border border-white/10">
+        <div className="w-full sm:w-auto flex items-center justify-between p-1 rounded-xl bg-slate-900/80 border border-white/10">
           <button
             onClick={() => setRole('batter')}
-            className={`px-5 py-2 rounded-lg text-xs font-bold font-mono transition-all ${
+            className={`flex-1 sm:flex-initial text-center px-3 sm:px-5 py-2 rounded-lg text-[11px] sm:text-xs font-bold font-mono transition-all whitespace-nowrap ${
               role === 'batter'
                 ? 'bg-gradient-to-r from-rr-pink to-rr-darkPink text-white shadow-md shadow-rr-pink/30'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            BATTERS LEADERBOARD ({overview ? overview.eligible_batters_count : 79})
+            BATTERS ({overview ? overview.eligible_batters_count : 79})
           </button>
           <button
             onClick={() => setRole('bowler')}
-            className={`px-5 py-2 rounded-lg text-xs font-bold font-mono transition-all ${
+            className={`flex-1 sm:flex-initial text-center px-3 sm:px-5 py-2 rounded-lg text-[11px] sm:text-xs font-bold font-mono transition-all whitespace-nowrap ${
               role === 'bowler'
                 ? 'bg-gradient-to-r from-rr-pink to-rr-darkPink text-white shadow-md shadow-rr-pink/30'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            BOWLERS LEADERBOARD ({overview ? overview.eligible_bowlers_count : 73})
+            BOWLERS ({overview ? overview.eligible_bowlers_count : 73})
           </button>
         </div>
 

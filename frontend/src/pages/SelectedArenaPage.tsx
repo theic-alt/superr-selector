@@ -153,31 +153,31 @@ export const SelectedArenaPage: React.FC<SelectedArenaPageProps> = ({
           </p>
         </div>
 
-        {/* Category Toggles */}
-        <div className="flex items-center space-x-2 p-1 rounded-xl bg-slate-900/80 border border-white/10 font-mono text-xs">
+        {/* Category Toggles - Mobile Responsive */}
+        <div className="w-full sm:w-auto flex items-center justify-between p-1 rounded-xl bg-slate-900/90 border border-white/10 font-mono text-xs">
           <button
             onClick={() => setActiveCategory('both')}
-            className={`px-4 py-2 rounded-lg font-bold transition-all ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-4 py-2 rounded-lg font-bold text-[11px] sm:text-xs transition-all text-center whitespace-nowrap ${
               activeCategory === 'both' ? 'bg-rr-pink text-white shadow-md shadow-rr-pink/30' : 'text-slate-400 hover:text-white'
             }`}
           >
-            ALL 20 PLAYERS
+            ALL 20
           </button>
           <button
             onClick={() => setActiveCategory('batters')}
-            className={`px-4 py-2 rounded-lg font-bold transition-all ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-4 py-2 rounded-lg font-bold text-[11px] sm:text-xs transition-all text-center whitespace-nowrap ${
               activeCategory === 'batters' ? 'bg-rr-pink text-white shadow-md shadow-rr-pink/30' : 'text-slate-400 hover:text-white'
             }`}
           >
-            TOP 10 BATTERS
+            BATTERS (10)
           </button>
           <button
             onClick={() => setActiveCategory('bowlers')}
-            className={`px-4 py-2 rounded-lg font-bold transition-all ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-4 py-2 rounded-lg font-bold text-[11px] sm:text-xs transition-all text-center whitespace-nowrap ${
               activeCategory === 'bowlers' ? 'bg-rr-pink text-white shadow-md shadow-rr-pink/30' : 'text-slate-400 hover:text-white'
             }`}
           >
-            TOP 10 BOWLERS
+            BOWLERS (10)
           </button>
         </div>
       </div>
@@ -185,19 +185,19 @@ export const SelectedArenaPage: React.FC<SelectedArenaPageProps> = ({
       {/* SECTION 1: BATTERS — TOP 10 */}
       {(activeCategory === 'both' || activeCategory === 'batters') && (
         <section className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
             <div className="flex items-center space-x-2.5">
               <span className="w-3 h-3 rounded-full bg-amber-400 shadow-md shadow-amber-400/50" />
-              <h2 className="text-2xl font-display font-black text-white uppercase tracking-wider">
+              <h2 className="text-xl sm:text-2xl font-display font-black text-white uppercase tracking-wider">
                 Batters — Top 10 Shortlist
               </h2>
             </div>
-            <span className="text-xs font-mono text-slate-400">
+            <span className="text-[11px] sm:text-xs font-mono text-slate-400">
               Evaluated on Pressure SR (35%), Boundary % (20%), Safety (15%), Uplifts (30%)
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5">
             {batters.map(p => renderPlayerCard(p, true))}
           </div>
         </section>
@@ -205,15 +205,15 @@ export const SelectedArenaPage: React.FC<SelectedArenaPageProps> = ({
 
       {/* SECTION 2: BOWLERS — TOP 10 */}
       {(activeCategory === 'both' || activeCategory === 'bowlers') && (
-        <section className="space-y-4 pt-6">
-          <div className="flex items-center justify-between">
+        <section className="space-y-4 pt-4 sm:pt-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
             <div className="flex items-center space-x-2.5">
               <span className="w-3 h-3 rounded-full bg-cyan-400 shadow-md shadow-cyan-400/50" />
-              <h2 className="text-2xl font-display font-black text-white uppercase tracking-wider">
+              <h2 className="text-xl sm:text-2xl font-display font-black text-white uppercase tracking-wider">
                 Bowlers — Top 10 Shortlist
               </h2>
             </div>
-            <span className="text-xs font-mono text-slate-400">
+            <span className="text-[11px] sm:text-xs font-mono text-slate-400">
               Evaluated on Pressure Economy (30%), Wkts/100 (25%), Dot % (15%), Improvements (30%)
             </span>
           </div>
