@@ -150,9 +150,9 @@ export const AUTHENTIC_PLAYERS: Record<string, PlayerImageInfo> = {
   },
   'corbin bosch': {
     name: 'Corbin Bosch',
-    imagePath: '/players/corbin_bosch.jpg',
-    isTransparentCutout: false,
-    source: 'Rajasthan Royals Official Media Photograph',
+    imagePath: '/players/corbin_bosch.png',
+    isTransparentCutout: true,
+    source: 'Paarl Royals / RR Official Roster Cutout',
     team: 'RR / SA',
     role: 'Bowler',
     rank: 5

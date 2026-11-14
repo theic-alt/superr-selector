@@ -28,7 +28,7 @@ export const PlayerShowcaseCharacter: React.FC<PlayerShowcaseCharacterProps> = (
 
   return (
     <div
-      className={`relative w-full max-w-[460px] h-[490px] sm:h-[540px] min-h-[490px] sm:min-h-[540px] mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col justify-between p-5 select-none bg-gradient-to-b from-[#0c1427] via-[#070b15] to-[#04060b] ${className}`}
+      className={`relative w-full max-w-[460px] h-[490px] sm:h-[540px] min-h-[490px] sm:min-h-[540px] mx-auto rounded-3xl overflow-hidden border border-rr-pink/30 shadow-2xl shadow-rr-pink/10 flex flex-col justify-between p-5 select-none bg-gradient-to-b from-[#0e1b38] via-[#091228] to-[#040816] ${className}`}
     >
       {/* 1. Atmospheric Ambient Stadium Lighting */}
       <div 

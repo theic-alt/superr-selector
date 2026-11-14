@@ -488,10 +488,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
   return (
     <div className="relative min-h-[calc(100vh-5rem)] flex flex-col justify-between overflow-hidden">
-      {/* Dynamic Background Atmosphere */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(234,26,136,0.18),rgba(7,10,16,0))] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_40%,rgba(229,169,60,0.08),rgba(7,10,16,0))] pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f29370a_1px,transparent_1px),linear-gradient(to_bottom,#1f29370a_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+      {/* Dynamic Background Atmosphere - Rajasthan Royals Royal Stadium Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(234,26,136,0.22),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_85%_35%,rgba(0,75,160,0.18),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_15%_75%,rgba(229,169,60,0.12),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#004ba00a_1px,transparent_1px),linear-gradient(to_bottom,#ea1a880a_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
       {/* Main Container */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-6 w-full z-10 flex flex-col space-y-6">
@@ -501,13 +502,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* ============================================================== */}
         <div className="text-center pt-2">
           {/* Official Rajasthan Royals Hackathon Banner */}
-          <div className="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-slate-900/80 border border-rr-pink/40 backdrop-blur-md mb-4 shadow-lg shadow-rr-pink/10 animate-fade-in">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#0a142c]/90 border border-rr-pink/50 backdrop-blur-md mb-4 shadow-lg shadow-rr-pink/20 animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-rr-pink animate-pulse" />
-            <span className="text-xs font-mono font-bold tracking-widest text-slate-200">
-              RAJASTHAN ROYALS HACKATHON // SEASON 2
+            <span className="text-xs font-mono font-bold tracking-widest text-slate-100">
+              👑 RAJASTHAN ROYALS // HALLA BOL
             </span>
             <span className="text-slate-500">|</span>
-            <span className="text-xs font-mono text-rr-pink font-semibold">PRODUCTION ENGINE</span>
+            <span className="text-xs font-mono text-rr-gold font-bold">SUPERR SELECTOR S2</span>
           </div>
 
           {/* Core Title & Subtitles per prompt specification */}
