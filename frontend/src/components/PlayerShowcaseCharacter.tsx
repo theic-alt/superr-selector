@@ -41,7 +41,7 @@ export const PlayerShowcaseCharacter: React.FC<PlayerShowcaseCharacterProps> = (
 
       {/* 2. Top Header Bar: Rank & Verification Tag */}
       <div className="relative z-20 flex items-center justify-between w-full">
-        {/* Rank Badge */}
+        {/* Rank Badge & Benchmark Tag */}
         <div className="flex items-center space-x-2">
           <span className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase border shadow-lg ${
             isRank1
@@ -53,8 +53,8 @@ export const PlayerShowcaseCharacter: React.FC<PlayerShowcaseCharacterProps> = (
           </span>
 
           {isRank1 && (
-            <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950">
-              BENCHMARK
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950 shadow">
+              BENCHMARK (100.0)
             </span>
           )}
         </div>

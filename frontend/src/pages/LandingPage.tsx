@@ -596,26 +596,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-rr-pink/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-rr-gold/10 rounded-full blur-3xl pointer-events-none" />
 
-          {/* LEFT: 3D Player Character Render (45-50% visual width) */}
+          {/* LEFT: Player Character Showcase (45-50% visual width) */}
           <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[460px] sm:min-h-[520px]">
-            {/* Elite Badge Header */}
-            <div className="absolute top-2 left-2 z-20 flex items-center space-x-2">
-              <span className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase border shadow-lg ${
-                featuredPlayer.official_rank === 1
-                  ? 'bg-amber-950/70 border-amber-500/50 text-amber-300 shadow-amber-500/20'
-                  : 'bg-slate-900/80 border-pitch-border text-slate-300'
-              }`}>
-                {featuredPlayer.official_rank === 1 && <Trophy className="w-3.5 h-3.5 text-amber-400" />}
-                <span>RANK #{featuredPlayer.official_rank} {featuredPlayer.role.toUpperCase()}</span>
-              </span>
-
-              {featuredPlayer.official_rank === 1 && (
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950">
-                  BENCHMARK (100.0)
-                </span>
-              )}
-            </div>
-
             {/* Quick-switch arrow overlay */}
             <button
               onClick={() => setFeaturedIndex(prev => (prev > 0 ? prev - 1 : currentList.length - 1))}
@@ -632,8 +614,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* Standardized Full-Body Character Showcase */}
-            <div className="w-full h-[520px] sm:h-[580px] relative">
+            {/* Standardized Player Showcase */}
+            <div className="w-full h-[520px] sm:h-[580px] relative flex items-center justify-center">
               <PlayerShowcaseCharacter
                 key={`${featuredPlayer.player_id}-${featuredPlayer.role}`}
                 playerImage={getPlayerImage(featuredPlayer.name)}
