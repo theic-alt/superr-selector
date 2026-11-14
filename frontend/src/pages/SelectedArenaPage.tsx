@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Trophy, Shield, Zap, Sparkles, Activity, ArrowUpRight, Flame, Target } from 'lucide-react';
 import { SelectedTop20, PlayerOverview } from '../types';
+import { getPlayerImage } from '../utils/playerImages';
 
 interface SelectedArenaPageProps {
   selectedTop20: SelectedTop20 | null;
@@ -49,12 +50,20 @@ export const SelectedArenaPage: React.FC<SelectedArenaPageProps> = ({
             </span>
           </div>
 
-          {/* Abstract 3D Player Shield / Initials */}
+          {/* Real Player Image Avatar */}
           <div className="flex items-center space-x-4 mb-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 flex items-center justify-center group-hover:border-rr-pink/60 transition-colors shadow-inner">
-              <span className="text-xl font-display font-black text-white tracking-wider group-hover:scale-110 transition-transform">
-                {p.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-              </span>
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 overflow-hidden flex items-center justify-center group-hover:border-rr-pink/60 transition-colors shadow-inner flex-shrink-0">
+              {getPlayerImage(p.name) ? (
+                <img
+                  src={getPlayerImage(p.name)!}
+                  alt={p.name}
+                  className="w-full h-full object-cover object-top filter brightness-105 group-hover:scale-110 transition-transform duration-300"
+                />
+              ) : (
+                <span className="text-xl font-display font-black text-white tracking-wider group-hover:scale-110 transition-transform">
+                  {p.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                </span>
+              )}
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-xl font-display font-black text-white truncate group-hover:text-rr-pink transition-colors">

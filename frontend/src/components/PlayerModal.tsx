@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { X, Trophy, Activity, Zap, Shield, BarChart3, TrendingUp, Calendar, AlertCircle } from 'lucide-react';
 import { PlayerDetails } from '../types';
 import { fetchPlayerDetails } from '../api';
+import { getPlayerImage } from '../utils/playerImages';
 
 interface PlayerModalProps {
   playerId: number | null;
@@ -67,33 +68,44 @@ export const PlayerModal: React.FC<PlayerModalProps> = ({ playerId, rolePreferen
             <>
               {/* 1. PLAYER HEADER (Immediately visible metrics) */}
               <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-pitch-panel to-slate-900 border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                    <span className={`px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider ${
-                      player.role === 'Batter' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                    }`}>
-                      {player.role}
-                    </span>
-                    {player.is_eligible && player.rank ? (
-                      <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold bg-rr-pink/20 text-rr-pink border border-rr-pink/30 flex items-center space-x-1">
-                        <Trophy className="w-3 h-3 inline mr-1" />
-                        <span>ROLE RANK #{player.rank}</span>
+                <div className="flex items-center space-x-5">
+                  {getPlayerImage(player.name) && (
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden bg-slate-950 border-2 border-rr-pink/50 shadow-xl shadow-rr-pink/20 flex-shrink-0">
+                      <img
+                        src={getPlayerImage(player.name)!}
+                        alt={player.name}
+                        className="w-full h-full object-cover object-top filter brightness-105"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      <span className={`px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider ${
+                        player.role === 'Batter' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
+                      }`}>
+                        {player.role}
                       </span>
-                    ) : (
-                      <span className="px-2.5 py-0.5 rounded-md text-xs font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30">
-                        OFFICIAL RANK UNAVAILABLE (INELIGIBLE)
+                      {player.is_eligible && player.rank ? (
+                        <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold bg-rr-pink/20 text-rr-pink border border-rr-pink/30 flex items-center space-x-1">
+                          <Trophy className="w-3 h-3 inline mr-1" />
+                          <span>ROLE RANK #{player.rank}</span>
+                        </span>
+                      ) : (
+                        <span className="px-2.5 py-0.5 rounded-md text-xs font-mono bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                          OFFICIAL RANK UNAVAILABLE (INELIGIBLE)
+                        </span>
+                      )}
+                      <span className="px-2 py-0.5 rounded text-[11px] font-mono text-slate-400 bg-black/40">
+                        ID: {player.player_id}
                       </span>
-                    )}
-                    <span className="px-2 py-0.5 rounded text-[11px] font-mono text-slate-400 bg-black/40">
-                      ID: {player.player_id}
-                    </span>
+                    </div>
+                    <h2 className="text-3xl font-display font-black text-white tracking-wide">
+                      {player.name}
+                    </h2>
+                    <p className="text-xs font-mono text-slate-400 mt-1">
+                      Franchise / International Teams: <span className="text-slate-200">{player.teams.join(', ') || 'Independent'}</span>
+                    </p>
                   </div>
-                  <h2 className="text-3xl font-display font-black text-white tracking-wide">
-                    {player.name}
-                  </h2>
-                  <p className="text-xs font-mono text-slate-400 mt-1">
-                    Franchise / International Teams: <span className="text-slate-200">{player.teams.join(', ') || 'Independent'}</span>
-                  </p>
                 </div>
 
                 {/* Main Score Badges */}

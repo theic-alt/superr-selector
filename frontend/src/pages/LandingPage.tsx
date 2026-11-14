@@ -17,7 +17,8 @@ import {
   Target,
   Award
 } from 'lucide-react';
-import { PlayerVisual3D } from '../components/PlayerVisual3D';
+import { RealPlayerVisual } from '../components/RealPlayerVisual';
+import { getPlayerImage } from '../utils/playerImages';
 import { OverviewStats, SelectedTop20, PlayerOverview } from '../types';
 
 interface LandingPageProps {
@@ -617,9 +618,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* 3D Visual Component with interactive stadium lighting & mouse tilt */}
+            {/* Real Player Visual with interactive stadium lighting & mouse tilt */}
             <div className="w-full h-[460px] sm:h-[520px] relative">
-              <PlayerVisual3D
+              <RealPlayerVisual
                 key={`${featuredPlayer.player_id}-${featuredPlayer.role}`}
                 name={featuredPlayer.name}
                 role={featuredPlayer.role}
@@ -630,10 +631,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               />
             </div>
 
-            {/* Interactive hint under 3D avatar */}
+            {/* Interactive hint under real player cutout */}
             <div className="absolute bottom-1 z-20 text-center pointer-events-none">
               <span className="text-[10px] font-mono text-slate-400 bg-slate-950/80 px-3 py-1 rounded-full border border-white/5">
-                Cinematic 3D Character • Hover & Move Cursor for Parallax Depth
+                Official Roster Cutout • Move Cursor for 3D Stadium Depth
               </span>
             </div>
           </div>
@@ -927,14 +928,29 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     </span>
                   </div>
 
-                  {/* Player Name & Teams */}
-                  <div className="mb-2">
-                    <h4 className="text-sm font-display font-bold text-white truncate group-hover:text-rr-pink transition-colors">
-                      {player.name}
-                    </h4>
-                    <span className="text-[10px] font-mono text-slate-400 block truncate">
-                      {player.teams.join(' • ')}
-                    </span>
+                  {/* Player Real Photo & Identity */}
+                  <div className="flex items-center space-x-3 mb-2.5">
+                    <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-900 border border-white/10 flex-shrink-0 flex items-center justify-center">
+                      {getPlayerImage(player.name) ? (
+                        <img 
+                          src={getPlayerImage(player.name)!} 
+                          alt={player.name}
+                          className="w-full h-full object-cover object-top filter brightness-105"
+                        />
+                      ) : (
+                        <span className="text-xs font-mono font-bold text-rr-pink">
+                          {player.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-display font-bold text-white truncate group-hover:text-rr-pink transition-colors">
+                        {player.name}
+                      </h4>
+                      <span className="text-[10px] font-mono text-slate-400 block truncate">
+                        {player.teams.join(' • ')}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Key Differentiator Stat */}
