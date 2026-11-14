@@ -17,7 +17,7 @@ import {
   Target,
   Award
 } from 'lucide-react';
-import { RealPlayerVisual } from '../components/RealPlayerVisual';
+import { PlayerShowcaseCharacter } from '../components/PlayerShowcaseCharacter';
 import { getPlayerImage } from '../utils/playerImages';
 import { OverviewStats, SelectedTop20, PlayerOverview } from '../types';
 
@@ -618,24 +618,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* Real Player Visual with interactive stadium lighting & mouse tilt */}
-            <div className="w-full h-[460px] sm:h-[520px] relative">
-              <RealPlayerVisual
+            {/* Standardized Full-Body Character Showcase */}
+            <div className="w-full h-[520px] sm:h-[580px] relative">
+              <PlayerShowcaseCharacter
                 key={`${featuredPlayer.player_id}-${featuredPlayer.role}`}
+                playerImage={getPlayerImage(featuredPlayer.name)}
                 name={featuredPlayer.name}
                 role={featuredPlayer.role}
                 rank={featuredPlayer.official_rank}
-                teams={featuredPlayer.teams}
                 ppiScore={featuredPlayer.ppi_score}
+                teams={featuredPlayer.teams}
                 className="w-full h-full"
               />
-            </div>
-
-            {/* Interactive hint under real player cutout */}
-            <div className="absolute bottom-1 z-20 text-center pointer-events-none">
-              <span className="text-[10px] font-mono text-slate-400 bg-slate-950/80 px-3 py-1 rounded-full border border-white/5">
-                Official Roster Cutout • Move Cursor for 3D Stadium Depth
-              </span>
             </div>
           </div>
 

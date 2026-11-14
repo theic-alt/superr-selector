@@ -1,41 +1,41 @@
-// Central registry of verified real player images
-export const PLAYER_IMAGES: Record<string, string> = {
+// Central registry of standardized full-body player character images
+export const STANDARDIZED_PLAYER_IMAGES: Record<string, string> = {
   // Top 10 Batters
-  'donovan ferreira': '/players/donovan_ferreira.png',
-  'shashank singh': '/players/shashank_singh.png',
-  'ashutosh sharma': '/players/ashutosh_sharma.png',
-  'sikandar raza': '/players/sikandar_raza.jpg',
-  'towhid hridoy': '/players/towhid_hridoy.jpg',
-  'tristan stubbs': '/players/tristan_stubbs.png',
-  'david miller': '/players/david_miller.png',
-  'naman dhir': '/players/naman_dhir.png',
-  'rinku singh': '/players/rinku_singh.png',
-  'jason holder': '/players/jason_holder.jpg',
+  'donovan ferreira': '/players/standardized/donovan_ferreira.png',
+  'shashank singh': '/players/standardized/shashank_singh.png',
+  'ashutosh sharma': '/players/standardized/ashutosh_sharma.png',
+  'sikandar raza': '/players/standardized/sikandar_raza.png',
+  'towhid hridoy': '/players/standardized/towhid_hridoy.png',
+  'tristan stubbs': '/players/standardized/tristan_stubbs.png',
+  'david miller': '/players/standardized/david_miller.png',
+  'naman dhir': '/players/standardized/naman_dhir.png',
+  'rinku singh': '/players/standardized/rinku_singh.png',
+  'jason holder': '/players/standardized/jason_holder.png',
 
   // Top 10 Bowlers
-  'akeal hosein': '/players/akeal_hosein.png',
-  'mohammad rishad hossain': '/players/mohammad_rishad_hossain.jpg',
-  'rishad hossain': '/players/mohammad_rishad_hossain.jpg',
-  'sunil narine': '/players/sunil_narine.png',
-  'eshan malinga': '/players/eshan_malinga.png',
-  'corbin bosch': '/players/corbin_bosch.jpg',
-  'mitchell santner': '/players/mitchell_santner.png',
-  'jasprit bumrah': '/players/jasprit_bumrah.png',
-  'taskin ahmed': '/players/taskin_ahmed.jpg',
-  'roston chase': '/players/roston_chase.jpg',
-  'harshit rana': '/players/harshit_rana.png',
+  'akeal hosein': '/players/standardized/akeal_hosein.png',
+  'mohammad rishad hossain': '/players/standardized/mohammad_rishad_hossain.png',
+  'rishad hossain': '/players/standardized/mohammad_rishad_hossain.png',
+  'sunil narine': '/players/standardized/sunil_narine.png',
+  'eshan malinga': '/players/standardized/eshan_malinga.png',
+  'corbin bosch': '/players/standardized/corbin_bosch.png',
+  'mitchell santner': '/players/standardized/mitchell_santner.png',
+  'jasprit bumrah': '/players/standardized/jasprit_bumrah.png',
+  'taskin ahmed': '/players/standardized/taskin_ahmed.png',
+  'roston chase': '/players/standardized/roston_chase.png',
+  'harshit rana': '/players/standardized/harshit_rana.png',
 };
 
-export function getPlayerImage(name?: string): string | null {
-  if (!name) return null;
+export function getPlayerImage(name?: string): string {
+  if (!name) return '/players/standardized/donovan_ferreira.png';
   const key = name.toLowerCase().trim();
-  if (PLAYER_IMAGES[key]) return PLAYER_IMAGES[key];
+  if (STANDARDIZED_PLAYER_IMAGES[key]) return STANDARDIZED_PLAYER_IMAGES[key];
 
-  // Try substring matching (e.g., "Rishad Hossain" inside "Mohammad Rishad Hossain")
-  for (const [k, v] of Object.entries(PLAYER_IMAGES)) {
+  // Try substring matching
+  for (const [k, v] of Object.entries(STANDARDIZED_PLAYER_IMAGES)) {
     if (key.includes(k) || k.includes(key)) {
       return v;
     }
   }
-  return null;
+  return '/players/standardized/donovan_ferreira.png';
 }
