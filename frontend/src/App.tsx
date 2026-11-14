@@ -101,21 +101,26 @@ export const App: React.FC = () => {
         />
       )}
 
-      {/* Footer */}
-      <footer className="border-t border-pitch-border bg-slate-950 py-8 text-xs font-mono text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center space-x-2">
-            <span className="w-2 h-2 rounded-full bg-rr-pink" />
-            <span className="text-slate-300 font-bold">SupeRR Selector Season 2</span>
-            <span>•</span>
-            <span>Rajasthan Royals Analytics Team Submission</span>
+      {/* Footer with Rajasthan Royals Official Branding */}
+      <footer className="border-t-2 border-rr-pink/30 bg-[#040714] py-8 text-xs font-mono text-slate-400 shadow-inner">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex items-center space-x-3">
+            <img 
+              src="/rr-logo.png" 
+              alt="Rajasthan Royals" 
+              className="h-8 w-auto object-contain filter drop-shadow-[0_0_10px_rgba(234,26,136,0.5)]" 
+            />
+            <div className="border-l border-rr-pink/30 pl-3">
+              <span className="text-white font-bold block">SupeRR Selector Season 2</span>
+              <span className="text-rr-pink text-[11px] font-semibold">Official Rajasthan Royals Analytics Platform</span>
+            </div>
           </div>
-          <div className="flex items-center space-x-4 text-[11px]">
-            <span>FastAPI Backend Engine</span>
+          <div className="flex items-center space-x-4 text-[11px] text-slate-400">
+            <span className="px-2 py-1 rounded bg-[#091124] border border-rr-pink/20 text-slate-300">FastAPI Backend Engine</span>
             <span>•</span>
-            <span>Three.js Realtime Pitch</span>
+            <span className="px-2 py-1 rounded bg-[#091124] border border-rr-pink/20 text-slate-300">Three.js Realtime Pitch</span>
             <span>•</span>
-            <span>Relative PPI Composite Model v2.6</span>
+            <span className="px-2 py-1 rounded bg-[#091124] border border-rr-pink/20 text-rr-pink font-bold">Relative PPI v2.6</span>
           </div>
         </div>
       </footer>

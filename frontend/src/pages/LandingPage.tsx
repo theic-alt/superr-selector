@@ -502,23 +502,29 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* ============================================================== */}
         <div className="text-center pt-2">
           {/* Official Rajasthan Royals Hackathon Banner */}
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#0a142c]/90 border border-rr-pink/50 backdrop-blur-md mb-4 shadow-lg shadow-rr-pink/20 animate-fade-in">
-            <span className="w-2 h-2 rounded-full bg-rr-pink animate-pulse" />
-            <span className="text-xs font-mono font-bold tracking-widest text-slate-100">
-              👑 RAJASTHAN ROYALS // HALLA BOL
+          <div className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-[#12081f]/95 border border-rr-pink/60 backdrop-blur-md mb-4 shadow-lg shadow-rr-pink/30 animate-fade-in">
+            <img 
+              src="/rr-logo.png" 
+              alt="Rajasthan Royals" 
+              className="h-4 sm:h-5 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(234,26,136,0.7)]" 
+            />
+            <span className="text-slate-600">|</span>
+            <span className="text-xs font-mono font-bold tracking-widest text-slate-100 flex items-center space-x-1.5">
+              <span>HALLA BOL</span>
+              <span className="text-rr-pink">ROYALS ANALYTICS</span>
             </span>
-            <span className="text-slate-500">|</span>
+            <span className="text-slate-600">|</span>
             <span className="text-xs font-mono text-rr-gold font-bold">SUPERR SELECTOR S2</span>
           </div>
 
           {/* Core Title & Subtitles per prompt specification */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-tight text-white uppercase leading-none">
-            THE <span className="bg-gradient-to-r from-rr-pink via-rose-400 to-rr-gold bg-clip-text text-transparent">PRESSURE ELITE</span>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-tight text-white uppercase leading-none drop-shadow-[0_0_35px_rgba(234,26,136,0.35)]">
+            THE <span className="bg-gradient-to-r from-rr-pink via-[#ff3b9e] to-rose-400 bg-clip-text text-transparent">PRESSURE ELITE</span>
           </h1>
-          <h2 className="text-lg sm:text-2xl font-display font-bold tracking-wider text-slate-300 uppercase mt-2">
+          <h2 className="text-lg sm:text-2xl font-display font-bold tracking-wider text-slate-200 uppercase mt-2">
             20 PLAYERS. ONE PERFORMANCE STANDARD.
           </h2>
-          <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-400 font-sans leading-relaxed mt-2">
+          <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-300 font-sans leading-relaxed mt-2">
             "Discover the batters and bowlers who deliver when the pressure is highest."
           </p>
         </div>
@@ -526,15 +532,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* ============================================================== */}
         {/* 2. CATEGORY TOGGLE (TOP 10 BATTERS vs TOP 10 BOWLERS) */}
         {/* ============================================================== */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-pitch-border/60 pb-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-rr-pink/30 pb-4">
           {/* Prominent Toggle Buttons */}
-          <div className="flex items-center bg-slate-950/80 p-1.5 rounded-2xl border border-pitch-border shadow-inner">
+          <div className="flex items-center bg-[#090b1c]/90 p-1.5 rounded-2xl border border-rr-pink/30 shadow-inner shadow-rr-pink/10">
             <button
               onClick={() => handleCategoryChange('batters')}
               className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
                 activeCategory === 'batters'
-                  ? 'bg-gradient-to-r from-rr-pink to-rose-600 text-white shadow-lg shadow-rr-pink/30 scale-100'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                  ? 'bg-gradient-to-r from-rr-pink via-rose-500 to-rr-darkPink text-white shadow-xl shadow-rr-pink/40 border border-white/20 scale-100'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-rr-pink/10'
               }`}
             >
               <Zap className="w-4 h-4 text-amber-300" />
@@ -550,8 +556,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               onClick={() => handleCategoryChange('bowlers')}
               className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 ${
                 activeCategory === 'bowlers'
-                  ? 'bg-gradient-to-r from-rr-pink to-rose-600 text-white shadow-lg shadow-rr-pink/30 scale-100'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                  ? 'bg-gradient-to-r from-rr-pink via-rose-500 to-rr-darkPink text-white shadow-xl shadow-rr-pink/40 border border-white/20 scale-100'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-rr-pink/10'
               }`}
             >
               <Target className="w-4 h-4 text-cyan-300" />
@@ -569,21 +575,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <span className="text-slate-400 uppercase tracking-widest">
               {activeCategory === 'batters' ? 'BATTERS — TOP 10 OF 10' : 'BOWLERS — TOP 10 OF 10'}
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-rr-pink" />
-            <span className="text-slate-300 font-semibold">
+            <span className="w-2 h-2 rounded-full bg-rr-pink shadow-md shadow-rr-pink/50 animate-pulse" />
+            <span className="text-slate-200 font-semibold">
               FEATURED: <span className="text-rr-pink font-bold">#{featuredPlayer.official_rank}</span> ({featuredIndex + 1}/10)
             </span>
 
             <button
               onClick={() => setIsAuditModalOpen(true)}
-              className="px-3 py-1 rounded-lg bg-slate-900 border border-emerald-500/40 hover:bg-emerald-950/40 text-emerald-300 hover:text-emerald-200 text-[11px] font-mono font-semibold flex items-center space-x-1.5 transition-all shadow-sm"
+              className="px-3 py-1 rounded-lg bg-[#0e1628] border border-rr-pink/40 hover:bg-rr-pink/20 text-slate-200 hover:text-white text-[11px] font-mono font-semibold flex items-center space-x-1.5 transition-all shadow-sm"
               title="Inspect side-by-side verification grid of all 20 authentic player photographs"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-rr-pink" />
               <span>AUDIT 20 PLAYER PHOTOS</span>
             </button>
 
-            <span className="hidden lg:inline-block text-[11px] text-slate-500 border border-slate-800 px-2 py-0.5 rounded bg-slate-900">
+            <span className="hidden lg:inline-block text-[11px] text-slate-400 border border-rr-pink/20 px-2 py-0.5 rounded bg-slate-900/80">
               Use ← → Keys
             </span>
           </div>
@@ -592,11 +598,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* ============================================================== */}
         {/* 3. MAIN FEATURED PLAYER 3D SHOWCASE (~45-50% Visual Area) */}
         {/* ============================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center rounded-3xl bg-slate-950/70 border border-white/10 backdrop-blur-xl p-4 sm:p-6 lg:p-8 shadow-2xl relative overflow-hidden min-h-[580px] lg:min-h-[640px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center rounded-3xl bg-gradient-to-b from-[#12081f]/85 via-[#080d1e]/90 to-[#040816]/95 border-2 border-rr-pink/40 backdrop-blur-2xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-rr-pink/15 relative overflow-hidden min-h-[580px] lg:min-h-[640px]">
           
-          {/* Subtle Accent Glows Behind Player */}
-          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-rr-pink/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-rr-gold/10 rounded-full blur-3xl pointer-events-none" />
+          {/* Vibrant Rajasthan Royals Pink Accent Glows Behind Player */}
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-rr-pink/25 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-10 -right-10 w-80 h-80 bg-rr-pink/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-rr-gold/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* LEFT: Player Character Showcase (45-50% visual width) */}
           <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[520px] sm:min-h-[580px]">
@@ -669,28 +676,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* Large PPI Score Card with Animated Progress Meter */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-white/10 relative overflow-hidden flex items-center justify-between shadow-xl">
+            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-[#1a0a28]/95 via-[#0e132b]/95 to-[#070b1a]/95 border-2 border-rr-pink/50 relative overflow-hidden flex items-center justify-between shadow-2xl shadow-rr-pink/20">
               <div className="space-y-1">
-                <span className="text-[11px] font-mono text-slate-400 uppercase tracking-widest block font-semibold">
+                <span className="text-[11px] font-mono text-rr-pink uppercase tracking-widest block font-bold">
                   PRESSURE PERFORMANCE INDEX
                 </span>
                 <div className="flex items-baseline space-x-2">
-                  <span className="text-4xl sm:text-5xl font-display font-black bg-gradient-to-r from-white via-slate-100 to-rr-pink bg-clip-text text-transparent">
+                  <span className="text-4xl sm:text-5xl font-display font-black bg-gradient-to-r from-white via-pink-100 to-rr-pink bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(234,26,136,0.3)]">
                     {featuredPlayer.ppi_score.toFixed(2)}
                   </span>
                   <span className="text-base font-mono text-slate-400 font-bold">/ 100.00</span>
                 </div>
-                <p className="text-xs font-mono text-slate-400">
+                <p className="text-xs font-mono text-slate-300">
                   Shrinkage-Adjusted Reliability ({featuredPlayer.reliability_pct.toFixed(1)}%) • Rank #{featuredPlayer.official_rank}
                 </p>
               </div>
 
-              {/* Circular Radial Meter */}
+              {/* Circular Radial Meter with Royals Pink Arc */}
               <div className="relative w-20 h-20 flex-shrink-0 flex items-center justify-center">
                 <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
                   {/* Track */}
                   <path
-                    className="text-slate-800"
+                    className="text-slate-800/80"
                     strokeWidth="3.2"
                     stroke="currentColor"
                     fill="none"
@@ -698,9 +705,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   />
                   {/* Meter fill */}
                   <path
-                    className={featuredPlayer.official_rank === 1 ? "text-rr-gold" : "text-rr-pink"}
+                    className={featuredPlayer.official_rank === 1 ? "text-amber-400" : "text-rr-pink"}
                     strokeDasharray={`${featuredPlayer.ppi_score}, 100`}
-                    strokeWidth="3.2"
+                    strokeWidth="3.4"
                     strokeLinecap="round"
                     stroke="currentColor"
                     fill="none"
@@ -708,7 +715,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-xs font-mono font-bold text-white">
+                  <span className="text-xs font-mono font-bold text-white drop-shadow">
                     {featuredPlayer.ppi_score.toFixed(0)}%
                   </span>
                 </div>
@@ -796,8 +803,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               )}
             </div>
 
-            {/* Analytical Narrative Box */}
-            <div className="p-3.5 rounded-xl bg-slate-900/40 border border-white/5 text-xs text-slate-300 leading-relaxed font-sans min-h-[84px] flex flex-col justify-center">
+            {/* Analytical Narrative Box with Royals Pink Accents */}
+            <div className="p-3.5 rounded-xl bg-[#140b24]/80 border-l-4 border-l-rr-pink border-t border-r border-b border-rr-pink/25 text-xs text-slate-200 leading-relaxed font-sans min-h-[84px] flex flex-col justify-center shadow-md shadow-rr-pink/5">
               <span className="text-[10px] font-mono text-rr-pink font-bold uppercase tracking-wider block mb-1">
                 ROYALS ANALYTICAL ASSESSMENT
               </span>
@@ -814,17 +821,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </button>
 
               {showExtendedStats && (
-                <div className="mt-3 p-3.5 rounded-xl bg-slate-950/80 border border-pitch-border grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono animate-fade-in">
+                <div className="mt-3 p-3.5 rounded-xl bg-[#090e21] border border-rr-pink/30 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono animate-fade-in shadow-inner">
                   <div>
-                    <span className="text-slate-500 block text-[10px]">PRESSURE MATCHES</span>
+                    <span className="text-slate-400 block text-[10px]">PRESSURE MATCHES</span>
                     <span className="text-white font-bold">{featuredPlayer.pressure_matches} Games</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block text-[10px]">RECENT APPS</span>
+                    <span className="text-slate-400 block text-[10px]">RECENT APPS</span>
                     <span className="text-white font-bold">{featuredPlayer.recent_appearances} (2023–24)</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block text-[10px]">
+                    <span className="text-slate-400 block text-[10px]">
                       {featuredPlayer.role === 'Batter' ? 'BASELINE SR' : 'BASELINE ECON'}
                     </span>
                     <span className="text-white font-bold">
@@ -834,7 +841,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     </span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block text-[10px]">
+                    <span className="text-slate-400 block text-[10px]">
                       {featuredPlayer.role === 'Batter' ? 'DISMISSAL RATE' : 'WKTS / 100'}
                     </span>
                     <span className="text-white font-bold">
@@ -851,7 +858,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={() => onSelectPlayer && onSelectPlayer(featuredPlayer.player_id, featuredPlayer.role)}
-                className="flex-1 min-w-[200px] flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-gradient-to-r from-rr-pink to-rose-600 hover:brightness-110 text-white font-semibold text-xs sm:text-sm shadow-xl shadow-rr-pink/25 hover:scale-[1.01] active:scale-[0.99] transition-all"
+                className="flex-1 min-w-[200px] flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-gradient-to-r from-rr-pink via-rose-500 to-rr-darkPink hover:brightness-110 text-white font-bold text-xs sm:text-sm shadow-xl shadow-rr-pink/35 hover:scale-[1.01] active:scale-[0.99] transition-all border border-white/20"
               >
                 <Activity className="w-4 h-4 text-white" />
                 <span>DEEP DIVE COMPLETE DOSSIER</span>
@@ -860,17 +867,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
               <button
                 onClick={onExploreSelected}
-                className="flex items-center space-x-2 px-4 py-3 rounded-xl glass-panel hover:bg-white/10 text-slate-300 hover:text-white font-semibold text-xs sm:text-sm border border-white/10 transition-all hover:scale-[1.01]"
+                className="flex items-center space-x-2 px-4 py-3 rounded-xl glass-panel hover:bg-rr-pink/15 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm border border-rr-pink/30 transition-all hover:scale-[1.01]"
               >
-                <Trophy className="w-4 h-4 text-rr-gold" />
+                <Trophy className="w-4 h-4 text-amber-400" />
                 <span>ARENA MATRIX</span>
               </button>
 
               <button
                 onClick={onAnalyzeAny}
-                className="flex items-center space-x-2 px-4 py-3 rounded-xl glass-panel hover:bg-white/10 text-slate-300 hover:text-white font-semibold text-xs sm:text-sm border border-white/10 transition-all hover:scale-[1.01]"
+                className="flex items-center space-x-2 px-4 py-3 rounded-xl glass-panel hover:bg-rr-pink/15 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm border border-rr-pink/30 transition-all hover:scale-[1.01]"
               >
-                <Cpu className="w-4 h-4 text-cyan-400" />
+                <Cpu className="w-4 h-4 text-rose-300" />
                 <span>SEARCH ANY PLAYER</span>
               </button>
             </div>
@@ -883,12 +890,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-rr-pink" />
+              <span className="w-2.5 h-2.5 rounded-full bg-rr-pink shadow-md shadow-rr-pink/50 animate-pulse" />
               <h3 className="text-sm font-display font-bold uppercase tracking-wider text-slate-200">
                 EXPLORE ALL {activeCategory.toUpperCase()} ({currentList.length} PROFILES)
               </h3>
             </div>
-            <span className="text-xs font-mono text-slate-500">
+            <span className="text-xs font-mono text-slate-400">
               Click any card to load into 3D view
             </span>
           </div>
@@ -896,7 +903,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           {/* Horizontal Scrollable Carousel */}
           <div 
             ref={carouselRef}
-            className="flex items-center space-x-3 overflow-x-auto pb-3 pt-1 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent scroll-smooth focus:outline-none"
+            className="flex items-center space-x-3 overflow-x-auto pb-3 pt-1 scrollbar-thin scrollbar-thumb-rr-pink/30 scrollbar-track-transparent scroll-smooth focus:outline-none"
             tabIndex={0}
           >
             {currentList.map((player, idx) => {
@@ -909,17 +916,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   onClick={() => setFeaturedIndex(idx)}
                   className={`flex-shrink-0 w-52 sm:w-56 p-3.5 rounded-2xl cursor-pointer transition-all duration-200 relative group select-none ${
                     isSelected
-                      ? 'bg-slate-900/90 border-2 border-rr-pink shadow-lg shadow-rr-pink/20 scale-[1.02]'
-                      : 'bg-slate-950/70 border border-white/10 hover:border-white/20 hover:bg-slate-900/50'
+                      ? 'bg-gradient-to-b from-[#250d38] to-[#0c1228] border-2 border-rr-pink shadow-xl shadow-rr-pink/30 scale-[1.02]'
+                      : 'bg-[#080d1d]/80 border border-white/10 hover:border-rr-pink/40 hover:bg-[#150a24]/60'
                   }`}
                 >
                   {/* Top Rank Badge & PPI */}
                   <div className="flex items-center justify-between mb-2">
                     <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider uppercase border ${
                       isRank1
-                        ? 'bg-amber-500/20 border-amber-500/40 text-amber-300'
+                        ? 'bg-amber-500/25 border-amber-500/50 text-amber-300'
                         : isSelected
-                        ? 'bg-rr-pink/20 border-rr-pink/40 text-rr-pink'
+                        ? 'bg-rr-pink/30 border-rr-pink text-white shadow-sm shadow-rr-pink/40'
                         : 'bg-slate-800 border-pitch-border text-slate-400'
                     }`}>
                       #{player.official_rank}

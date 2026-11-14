@@ -1,12 +1,29 @@
 @import "tailwindcss";
 
+@theme {
+  --color-rr-pink: #EA1A88;
+  --color-rr-pinkHover: #FF2A9D;
+  --color-rr-darkPink: #A60E5E;
+  --color-rr-lightPink: #FF70B8;
+  --color-rr-royalBlue: #004BA0;
+  --color-rr-blue: #0B2046;
+  --color-rr-darkBlue: #061024;
+  --color-rr-navy: #050B1A;
+  --color-rr-gold: #E5A93C;
+  --color-rr-accent: #FF3366;
+  --color-pitch-dark: #050814;
+  --color-pitch-surface: #091124;
+  --color-pitch-panel: #0D1935;
+}
+
 @layer base {
   body {
     background-color: #050814;
     background-image: 
-      radial-gradient(ellipse 90% 60% at 50% -15%, rgba(234, 26, 136, 0.16), transparent 70%),
-      radial-gradient(ellipse 70% 50% at 90% 40%, rgba(0, 75, 160, 0.14), transparent 70%),
-      radial-gradient(ellipse 60% 40% at 10% 80%, rgba(229, 169, 60, 0.08), transparent 70%);
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(234, 26, 136, 0.32), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 90% 30%, rgba(234, 26, 136, 0.20), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 10% 70%, rgba(0, 75, 160, 0.18), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 50% 90%, rgba(234, 26, 136, 0.16), transparent 70%);
     background-attachment: fixed;
     color: #f1f5f9;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -15,18 +32,19 @@
 }
 
 .glass-panel {
-  background: rgba(10, 18, 38, 0.75);
+  background: rgba(12, 16, 36, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(234, 26, 136, 0.15);
+  border: 1px solid rgba(234, 26, 136, 0.25);
+  box-shadow: 0 4px 20px -2px rgba(234, 26, 136, 0.08);
 }
 
 .glass-panel-elevated {
-  background: rgba(13, 25, 53, 0.88);
+  background: rgba(16, 22, 50, 0.90);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(234, 26, 136, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(5, 8, 20, 0.7), 0 0 25px -5px rgba(234, 26, 136, 0.2);
+  border: 1px solid rgba(234, 26, 136, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(5, 8, 20, 0.8), 0 0 30px -5px rgba(234, 26, 136, 0.3);
 }
 
 .glass-card-interactive {
@@ -35,11 +53,11 @@
 
 .glass-card-interactive:hover {
   transform: translateY(-4px);
-  border-color: rgba(234, 26, 136, 0.6);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(234, 26, 136, 0.35);
+  border-color: rgba(234, 26, 136, 0.7);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(234, 26, 136, 0.45);
 }
 
-/* Custom subtle scrollbar with Rajasthan Royals accent */
+/* Custom subtle scrollbar with Rajasthan Royals signature pink accent */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -50,11 +68,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #152244;
+  background: #2a1130;
   border-radius: 9999px;
-  border: 1px solid rgba(234, 26, 136, 0.2);
+  border: 1px solid rgba(234, 26, 136, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #EA1A88;
+  box-shadow: 0 0 10px #EA1A88;
 }
