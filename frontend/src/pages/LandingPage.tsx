@@ -900,10 +900,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </span>
           </div>
 
-          {/* Horizontal Scrollable Carousel with Mobile Bleed */}
+          {/* Horizontal Scrollable Carousel */}
           <div 
             ref={carouselRef}
-            className="-mx-4 px-4 sm:mx-0 sm:px-0 flex items-center space-x-2.5 sm:space-x-3 overflow-x-auto pb-3 pt-1 scrollbar-thin scrollbar-thumb-rr-pink/30 scrollbar-track-transparent scroll-smooth focus:outline-none"
+            className="w-full max-w-full flex items-center space-x-2.5 sm:space-x-3 overflow-x-auto pb-3 pt-1 scrollbar-thin scrollbar-thumb-rr-pink/30 scrollbar-track-transparent scroll-smooth focus:outline-none"
             tabIndex={0}
           >
             {currentList.map((player, idx) => {

@@ -34,32 +34,32 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, apiConn
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#101629]/95 backdrop-blur-md border-b border-[#EA1A85]/20 select-none">
-      <div className="w-full max-w-[1600px] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8 h-18 flex items-center justify-between gap-2 sm:gap-4">
+    <header className="sticky top-0 z-50 w-full bg-[#101629]/95 backdrop-blur-md border-b border-[#EA1A85]/20 select-none overflow-x-hidden">
+      <div className="w-full max-w-[1600px] mx-auto px-2.5 sm:px-5 lg:px-6 xl:px-8 h-16 sm:h-18 flex items-center justify-between gap-1.5 sm:gap-4">
         
         {/* ============================================================== */}
         {/* LEFT — BRANDING                                                */}
         {/* ============================================================== */}
         <div 
           onClick={() => handleTabClick('landing')}
-          className="flex items-center space-x-2.5 sm:space-x-3 cursor-pointer group flex-shrink-0 min-w-0"
+          className="flex items-center space-x-2 sm:space-x-3 cursor-pointer group flex-shrink-0 min-w-0"
         >
           {/* Rajasthan Royals Official Logo */}
           <div className="py-0.5 flex items-center justify-center flex-shrink-0">
             <img 
               src="/rr-logo.png" 
               alt="Rajasthan Royals" 
-              className="h-8 sm:h-9 xl:h-10 w-auto object-contain transition-opacity group-hover:opacity-90" 
+              className="h-7 sm:h-9 xl:h-10 w-auto object-contain transition-opacity group-hover:opacity-90 flex-shrink-0" 
             />
           </div>
 
           {/* Project Title & Subtitle */}
-          <div className="flex flex-col justify-center min-w-0 border-l border-white/10 pl-2.5 sm:pl-3">
-            <div className="flex items-center space-x-1.5 sm:space-x-2">
-              <span className="font-display font-black text-sm sm:text-base xl:text-lg tracking-wide text-white uppercase whitespace-nowrap leading-tight">
+          <div className="flex flex-col justify-center min-w-0 border-l border-white/10 pl-2 sm:pl-3">
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <span className="font-display font-black text-xs sm:text-base xl:text-lg tracking-wide text-white uppercase whitespace-nowrap leading-tight">
                 SUPERR <span className="text-[#EA1A85]">SELECTOR</span>
               </span>
-              <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold tracking-wider bg-[#254AA5]/30 text-white border border-[#254AA5]/60 uppercase whitespace-nowrap leading-none flex-shrink-0">
+              <span className="px-1 py-0.5 rounded text-[8px] sm:text-[9px] font-mono font-bold tracking-wider bg-[#254AA5]/30 text-white border border-[#254AA5]/60 uppercase whitespace-nowrap leading-none flex-shrink-0">
                 S2
               </span>
             </div>
@@ -105,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, apiConn
         {/* ============================================================== */}
         {/* RIGHT — STATUS AND SEARCH                                      */}
         {/* ============================================================== */}
-        <div className="flex items-center space-x-2 sm:space-x-2.5 xl:space-x-3 flex-shrink-0">
+        <div className="flex items-center space-x-1.5 sm:space-x-2.5 xl:space-x-3 flex-shrink-0">
           {/* FastAPI Engine Status Pill */}
           <div className="hidden md:flex items-center space-x-1.5 px-2 sm:px-2.5 py-1 rounded-full bg-[#141b33] border border-white/10 text-[10px] sm:text-[11px] font-mono text-[#C7CEDA]">
             <span 
@@ -122,21 +122,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, apiConn
           <button
             type="button"
             onClick={() => handleTabClick('analyzer')}
-            className="flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg bg-[#EA1A85] hover:bg-[#d41575] text-white text-xs font-semibold tracking-wide shadow-sm hover:shadow transition-all cursor-pointer"
+            className="flex items-center justify-center p-2 sm:px-3.5 sm:py-1.5 rounded-lg bg-[#EA1A85] hover:bg-[#d41575] text-white text-xs font-semibold tracking-wide shadow-sm hover:shadow transition-all cursor-pointer flex-shrink-0"
+            title="Search Player"
           >
-            <Search className="w-3.5 h-3.5 flex-shrink-0" />
-            <span className="hidden sm:inline whitespace-nowrap">Search Player</span>
-            <span className="sm:hidden whitespace-nowrap">Search</span>
+            <Search className="w-4 h-4 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+            <span className="hidden sm:inline ml-1.5 whitespace-nowrap">Search Player</span>
           </button>
 
-          {/* Mobile Menu Hamburger Toggle */}
+          {/* Mobile Menu Hamburger Toggle (High Visibility & Directly Visible on Screen) */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
-            className="lg:hidden p-1.5 rounded-lg text-[#C7CEDA] hover:text-white hover:bg-white/5 transition-colors cursor-pointer focus:outline-none flex-shrink-0"
+            className="lg:hidden p-2 rounded-lg text-white bg-slate-800 hover:bg-slate-700 border border-white/20 transition-all cursor-pointer focus:outline-none flex-shrink-0 shadow-md"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-[#EA1A85]" /> : <Menu className="w-5 h-5 text-white" />}
           </button>
         </div>
       </div>

@@ -43,7 +43,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-pitch-dark text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-pitch-dark text-slate-100 flex flex-col font-sans overflow-x-hidden w-full max-w-full">
       {/* Top Navigation */}
       <Navbar
         activeTab={activeTab}
@@ -52,7 +52,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1">
+      <main className="flex-1 w-full overflow-x-hidden">
         {activeTab === 'landing' && (
           <LandingPage
             overview={overview}
