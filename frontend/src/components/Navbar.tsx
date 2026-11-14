@@ -1,5 +1,14 @@
-import React from 'react';
-import { ShieldAlert, Activity, Users, Search, PlayCircle, Sliders, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { 
+  Sparkles, 
+  Activity, 
+  Users, 
+  Search, 
+  PlayCircle, 
+  Sliders, 
+  Menu, 
+  X 
+} from 'lucide-react';
 
 interface NavbarProps {
   activeTab: string;
@@ -8,104 +17,163 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, apiConnected }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const navItems = [
     { id: 'landing', label: 'The Pressure Elite', icon: Sparkles },
     { id: 'command-centre', label: 'Command Centre', icon: Activity },
-    { id: 'selected-arena', label: 'Selected Arena (Top 20)', icon: Users },
+    { id: 'selected-arena', label: 'Selected Arena', icon: Users },
     { id: 'analyzer', label: 'PPI Analyzer', icon: Search },
     { id: 'pressure-explainer', label: 'Pressure Simulator', icon: PlayCircle },
-    { id: 'model-explorer', label: 'Model Explorer & What-If', icon: Sliders },
+    { id: 'model-explorer', label: 'Model Explorer', icon: Sliders },
   ];
 
+  const handleTabClick = (tabId: string) => {
+    setActiveTab(tabId);
+    setMobileMenuOpen(false);
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full glass-panel border-b-2 border-rr-pink/60 bg-[#050814]/95 backdrop-blur-2xl shadow-xl shadow-rr-pink/15">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Rajasthan Royals Official Logo & Platform Identity */}
+    <header className="sticky top-0 z-50 w-full bg-[#101629]/95 backdrop-blur-md border-b border-[#EA1A85]/20 select-none">
+      <div className="w-full max-w-[1600px] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8 h-18 flex items-center justify-between gap-2 sm:gap-4">
+        
+        {/* ============================================================== */}
+        {/* LEFT — BRANDING                                                */}
+        {/* ============================================================== */}
         <div 
-          onClick={() => setActiveTab('landing')}
-          className="flex items-center space-x-3.5 cursor-pointer group"
+          onClick={() => handleTabClick('landing')}
+          className="flex items-center space-x-2.5 sm:space-x-3 cursor-pointer group flex-shrink-0 min-w-0"
         >
           {/* Rajasthan Royals Official Logo */}
-          <div className="relative py-1 flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+          <div className="py-0.5 flex items-center justify-center flex-shrink-0">
             <img 
               src="/rr-logo.png" 
               alt="Rajasthan Royals" 
-              className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-[0_2px_14px_rgba(234,26,136,0.65)]" 
+              className="h-8 sm:h-9 xl:h-10 w-auto object-contain transition-opacity group-hover:opacity-90" 
             />
           </div>
 
-          <div className="border-l border-rr-pink/40 pl-3">
-            <div className="flex items-center space-x-2">
-              <span className="font-display font-black text-lg sm:text-xl text-white tracking-wide">
-                SUPERR <span className="bg-gradient-to-r from-rr-pink via-rose-400 to-rr-gold bg-clip-text text-transparent">SELECTOR</span>
+          {/* Project Title & Subtitle */}
+          <div className="flex flex-col justify-center min-w-0 border-l border-white/10 pl-2.5 sm:pl-3">
+            <div className="flex items-center space-x-1.5 sm:space-x-2">
+              <span className="font-display font-black text-sm sm:text-base xl:text-lg tracking-wide text-white uppercase whitespace-nowrap leading-tight">
+                SUPERR <span className="text-[#EA1A85]">SELECTOR</span>
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rr-pink/25 text-white border border-rr-pink shadow-sm shadow-rr-pink/40">
-                SEASON 2
+              <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold tracking-wider bg-[#254AA5]/30 text-white border border-[#254AA5]/60 uppercase whitespace-nowrap leading-none flex-shrink-0">
+                S2
               </span>
             </div>
-            <p className="text-[11px] font-mono text-slate-300 tracking-tight flex items-center space-x-1.5">
-              <span className="text-rr-pink font-bold">RAJASTHAN ROYALS</span>
-              <span className="text-slate-600">•</span>
-              <span className="text-slate-400">HALLA BOL INTELLIGENCE</span>
-            </p>
+            {/* Subtitle hidden on small screens and compact laptops, visible on xl+ to prevent overflow */}
+            <span className="hidden xl:block text-[9.5px] 2xl:text-[10px] font-mono tracking-widest text-[#C7CEDA] uppercase whitespace-nowrap mt-0.5">
+              PRESSURE PERFORMANCE INTELLIGENCE
+            </span>
           </div>
         </div>
 
-        {/* Navigation Tabs with Signature RR Pink Theme */}
-        <nav className="hidden lg:flex items-center space-x-1 p-1 rounded-2xl bg-[#091124]/90 border border-rr-pink/30 shadow-inner shadow-rr-pink/10">
+        {/* ============================================================== */}
+        {/* CENTRE — NAVIGATION (DESKTOP)                                  */}
+        {/* ============================================================== */}
+        <nav className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 h-full flex-shrink-0">
           {navItems.map(item => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all ${
+                type="button"
+                onClick={() => handleTabClick(item.id)}
+                className={`relative h-18 flex items-center space-x-1.5 px-2 xl:px-2.5 2xl:px-3 text-[11.5px] xl:text-xs 2xl:text-[13px] font-medium transition-colors cursor-pointer ${
                   isActive
-                    ? 'bg-gradient-to-r from-rr-pink via-rose-600 to-rr-darkPink text-white font-bold shadow-lg shadow-rr-pink/40 border border-white/20'
-                    : 'text-slate-300 hover:text-white hover:bg-rr-pink/10'
+                    ? 'text-white font-semibold'
+                    : 'text-[#C7CEDA] hover:text-white'
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
-                <span>{item.label}</span>
+                <Icon className={`w-3.5 h-3.5 xl:w-4 xl:h-4 flex-shrink-0 transition-colors ${
+                  isActive ? 'text-[#EA1A85]' : 'text-[#C7CEDA]/70'
+                }`} />
+                <span className="whitespace-nowrap">{item.label}</span>
+                
+                {/* Refined subtle bottom indicator for active state */}
+                {isActive && (
+                  <span className="absolute bottom-0 left-1.5 right-1.5 h-[2.5px] bg-[#EA1A85] rounded-t-full shadow-[0_-1px_6px_rgba(234,26,133,0.5)]" />
+                )}
               </button>
             );
           })}
         </nav>
 
-        {/* Telemetry Status & Search Action */}
-        <div className="flex items-center space-x-3">
-          <div className="hidden sm:flex items-center space-x-2 px-3 py-1 rounded-full bg-[#0a142c] border border-rr-pink/40 text-[11px] font-mono shadow-sm shadow-rr-pink/10">
-            <span className={`w-2 h-2 rounded-full ${apiConnected ? 'bg-rr-pink animate-pulse' : 'bg-amber-400 animate-pulse'}`} />
-            <span className="text-slate-200">{apiConnected ? 'RR FastAPI Engine' : 'Local Pipeline'}</span>
+        {/* ============================================================== */}
+        {/* RIGHT — STATUS AND SEARCH                                      */}
+        {/* ============================================================== */}
+        <div className="flex items-center space-x-2 sm:space-x-2.5 xl:space-x-3 flex-shrink-0">
+          {/* FastAPI Engine Status Pill */}
+          <div className="hidden md:flex items-center space-x-1.5 px-2 sm:px-2.5 py-1 rounded-full bg-[#141b33] border border-white/10 text-[10px] sm:text-[11px] font-mono text-[#C7CEDA]">
+            <span 
+              className={`w-2 h-2 rounded-full ${
+                apiConnected ? 'bg-emerald-400' : 'bg-[#EA1A85] animate-pulse'
+              }`} 
+            />
+            <span className="whitespace-nowrap">
+              {apiConnected ? 'FastAPI Online' : 'Local Pipeline'}
+            </span>
           </div>
 
+          {/* Search Player CTA Button */}
           <button
-            onClick={() => setActiveTab('analyzer')}
-            className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-rr-pink via-rose-500 to-rr-darkPink hover:brightness-110 text-white text-xs font-bold shadow-lg shadow-rr-pink/40 hover:scale-[1.02] active:scale-[0.98] transition-all border border-white/10"
+            type="button"
+            onClick={() => handleTabClick('analyzer')}
+            className="flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg bg-[#EA1A85] hover:bg-[#d41575] text-white text-xs font-semibold tracking-wide shadow-sm hover:shadow transition-all cursor-pointer"
           >
-            <Search className="w-3.5 h-3.5" />
-            <span>Search Player</span>
+            <Search className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="hidden sm:inline whitespace-nowrap">Search Player</span>
+            <span className="sm:hidden whitespace-nowrap">Search</span>
+          </button>
+
+          {/* Mobile Menu Hamburger Toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Navigation Menu"
+            className="lg:hidden p-1.5 rounded-lg text-[#C7CEDA] hover:text-white hover:bg-white/5 transition-colors cursor-pointer focus:outline-none flex-shrink-0"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav Bar */}
-      <div className="lg:hidden flex overflow-x-auto px-4 py-2 space-x-2 border-t border-rr-pink/30 bg-slate-950/90">
-        {navItems.map(item => (
-          <button
-            key={item.id}
-            onClick={() => setActiveTab(item.id)}
-            className={`whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              activeTab === item.id
-                ? 'bg-rr-pink text-white font-bold shadow-md shadow-rr-pink/40'
-                : 'text-slate-400 hover:text-white bg-slate-900/60'
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
+      {/* ============================================================== */}
+      {/* MOBILE DROPDOWN NAVIGATION                                     */}
+      {/* ============================================================== */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden w-full bg-[#101629] border-t border-b border-[#EA1A85]/20 px-4 py-3 space-y-1 shadow-2xl">
+          <div className="pb-2 mb-2 border-b border-white/5 flex items-center justify-between text-[11px] font-mono text-[#C7CEDA]">
+            <span>PLATFORM NAVIGATION</span>
+            <div className="flex items-center space-x-1.5">
+              <span className={`w-2 h-2 rounded-full ${apiConnected ? 'bg-emerald-400' : 'bg-[#EA1A85]'}`} />
+              <span>{apiConnected ? 'FastAPI Connected' : 'Local Pipeline'}</span>
+            </div>
+          </div>
+          {navItems.map(item => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleTabClick(item.id)}
+                className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors text-left cursor-pointer ${
+                  isActive
+                    ? 'bg-[#EA1A85]/15 text-white font-semibold border-l-2 border-[#EA1A85]'
+                    : 'text-[#C7CEDA] hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <Icon className={`w-4 h-4 ${isActive ? 'text-[#EA1A85]' : 'text-[#C7CEDA]'}`} />
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
     </header>
   );
 };
