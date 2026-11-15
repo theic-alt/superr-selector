@@ -69,13 +69,19 @@ export const PlayerModal: React.FC<PlayerModalProps> = ({ playerId, rolePreferen
               {/* 1. PLAYER HEADER (Immediately visible metrics) */}
               <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-pitch-panel to-slate-900 border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-center space-x-5">
-                  {getPlayerImage(player.name) && (
+                  {getPlayerImage(player.name) ? (
                     <div className="w-20 h-20 rounded-2xl overflow-hidden bg-slate-950 border-2 border-rr-pink/50 shadow-xl shadow-rr-pink/20 flex-shrink-0">
                       <img
                         src={getPlayerImage(player.name)!}
                         alt={player.name}
                         className="w-full h-full object-cover object-top filter brightness-105"
                       />
+                    </div>
+                  ) : (
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden bg-gradient-to-br from-[#1c0f2f] to-[#0c1228] border-2 border-rr-pink/40 flex items-center justify-center flex-shrink-0 shadow-lg shadow-rr-pink/10">
+                      <span className="text-2xl font-display font-black text-rr-pink tracking-wider">
+                        {player.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+                      </span>
                     </div>
                   )}
                   <div>

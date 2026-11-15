@@ -3,7 +3,7 @@ import { Trophy, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { getPlayerImageInfo } from '../utils/playerImages';
 
 interface PlayerShowcaseCharacterProps {
-  playerImage: string;
+  playerImage?: string | null;
   name: string;
   role: 'Batter' | 'Bowler';
   rank: number;
@@ -24,7 +24,7 @@ export const PlayerShowcaseCharacter: React.FC<PlayerShowcaseCharacterProps> = (
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const isRank1 = rank === 1;
   const info = getPlayerImageInfo(name);
-  const isTransparent = info ? info.isTransparentCutout : playerImage.endsWith('.png');
+  const isTransparent = info ? info.isTransparentCutout : (playerImage?.endsWith('.png') ?? false);
 
   return (
     <div
@@ -71,33 +71,43 @@ export const PlayerShowcaseCharacter: React.FC<PlayerShowcaseCharacterProps> = (
         {/* Soft Radial Backlight behind the photograph */}
         <div className="absolute w-64 h-64 rounded-full bg-rr-pink/10 blur-2xl pointer-events-none" />
 
-        {isTransparent ? (
-          /* Transparent Cutout Presentation with Royals Rim Lighting */
-          <img
-            key={playerImage}
-            src={playerImage}
-            alt={name}
-            onLoad={() => setImageLoaded(true)}
-            className={`max-h-[300px] sm:max-h-[410px] w-auto max-w-[92%] object-contain object-bottom filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] drop-shadow-[0_0_24px_${
-              isRank1 ? 'rgba(229,169,60,0.35)' : 'rgba(234,26,136,0.40)'
-            }] transition-all duration-300 ${
-              imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}
-          />
-        ) : (
-          /* Framed Portrait Photograph Presentation */
-          <div className="relative max-h-[290px] sm:max-h-[390px] w-auto max-w-[85%] rounded-xl sm:rounded-2xl overflow-hidden border-2 border-rr-pink/30 shadow-2xl bg-slate-950/80 group">
+        {playerImage ? (
+          isTransparent ? (
+            /* Transparent Cutout Presentation with Royals Rim Lighting */
             <img
               key={playerImage}
               src={playerImage}
               alt={name}
               onLoad={() => setImageLoaded(true)}
-              className={`max-h-[290px] sm:max-h-[390px] w-auto object-contain filter brightness-100 contrast-105 transition-all duration-300 ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
+              className={`max-h-[300px] sm:max-h-[410px] w-auto max-w-[92%] object-contain object-bottom filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] drop-shadow-[0_0_24px_${
+                isRank1 ? 'rgba(229,169,60,0.35)' : 'rgba(234,26,136,0.40)'
+              }] transition-all duration-300 ${
+                imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
             />
-            {/* Subtle gloss gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+          ) : (
+            /* Framed Portrait Photograph Presentation */
+            <div className="relative max-h-[290px] sm:max-h-[390px] w-auto max-w-[85%] rounded-xl sm:rounded-2xl overflow-hidden border-2 border-rr-pink/30 shadow-2xl bg-slate-950/80 group">
+              <img
+                key={playerImage}
+                src={playerImage}
+                alt={name}
+                onLoad={() => setImageLoaded(true)}
+                className={`max-h-[290px] sm:max-h-[390px] w-auto object-contain filter brightness-100 contrast-105 transition-all duration-300 ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+              {/* Subtle gloss gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+            </div>
+          )
+        ) : (
+          /* Sleek Monogram Initials Fallback */
+          <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-gradient-to-br from-[#1d0e30] via-[#0f152d] to-[#060a18] border-2 border-rr-pink/50 flex flex-col items-center justify-center shadow-2xl shadow-rr-pink/20">
+            <span className="text-4xl sm:text-5xl font-display font-black text-rr-pink tracking-wider">
+              {name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+            </span>
+            <span className="text-[10px] font-mono text-slate-400 mt-1 uppercase">Rank #{rank}</span>
           </div>
         )}
       </div>

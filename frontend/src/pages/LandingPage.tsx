@@ -942,7 +942,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-900/90 border border-white/10 flex-shrink-0 flex items-center justify-center p-0.5">
                       {getPlayerImage(player.name) ? (
                         <img 
-                          src={getPlayerImage(player.name)} 
+                          src={getPlayerImage(player.name)!} 
                           alt={player.name}
                           className="w-full h-full object-contain filter brightness-100"
                         />

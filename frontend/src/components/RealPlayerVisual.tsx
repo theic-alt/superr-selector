@@ -101,13 +101,15 @@ export const RealPlayerVisual: React.FC<RealPlayerVisualProps> = ({
         )}
       </div>
 
-      {/* 4. Bottom Authenticity Badge */}
-      <div className="absolute bottom-2 z-20 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-950/90 border border-white/10 backdrop-blur-md text-[10px] font-mono text-slate-300 shadow-xl">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        <span className="font-semibold text-white">VERIFIED OFFICIAL ROSTER ASSET</span>
-        <span className="text-slate-500">•</span>
-        <span className="text-slate-400">{teams[0] || 'T20'}</span>
-      </div>
+      {/* 4. Bottom Authenticity Badge - Only for verified top 20 roster assets */}
+      {imageSrc && (
+        <div className="absolute bottom-2 z-20 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-950/90 border border-white/10 backdrop-blur-md text-[10px] font-mono text-slate-300 shadow-xl">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="font-semibold text-white">VERIFIED OFFICIAL ROSTER ASSET</span>
+          <span className="text-slate-500">•</span>
+          <span className="text-slate-400">{teams[0] || 'T20'}</span>
+        </div>
+      )}
     </div>
   );
 };

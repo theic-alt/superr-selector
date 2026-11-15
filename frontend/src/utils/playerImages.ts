@@ -206,20 +206,42 @@ export const AUTHENTIC_PLAYERS: Record<string, PlayerImageInfo> = {
 
 export function getPlayerImageInfo(name?: string): PlayerImageInfo | null {
   if (!name) return null;
-  const key = name.toLowerCase().trim();
+  const key = name.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+  
+  // 1. Direct exact key lookup
   if (AUTHENTIC_PLAYERS[key]) return AUTHENTIC_PLAYERS[key];
 
+  // 2. Normalized full-name exact match
   for (const [k, v] of Object.entries(AUTHENTIC_PLAYERS)) {
-    if (key.includes(k) || k.includes(key)) {
+    const normK = k.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+    if (key === normK) {
       return v;
     }
   }
+
+  // 3. Exact First & Last name match (e.g. 'M. Rishad Hossain' matching 'Mohammad Rishad Hossain')
+  const parts = key.split(/\s+/).filter(Boolean);
+  if (parts.length >= 2) {
+    const lastName = parts[parts.length - 1];
+    for (const [k, v] of Object.entries(AUTHENTIC_PLAYERS)) {
+      const kParts = k.split(/\s+/).filter(Boolean);
+      const kLastName = kParts[kParts.length - 1];
+      // Require both same last name and matching first character of first name
+      if (lastName === kLastName && parts[0][0] === kParts[0][0] && parts[0].length >= 3 && kParts[0].length >= 3) {
+        if (parts[0] === kParts[0]) {
+          return v;
+        }
+      }
+    }
+  }
+
+  // NEVER return a fallback for players outside the verified 20 shortlist
   return null;
 }
 
-export function getPlayerImage(name?: string): string {
+export function getPlayerImage(name?: string): string | null {
   const info = getPlayerImageInfo(name);
-  return info ? info.imagePath : '/players/donovan_ferreira.png';
+  return info ? info.imagePath : null;
 }
 
 export function getAllAuthenticPlayersList(): PlayerImageInfo[] {
